@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+        
+    <link rel="stylesheet" href="../static/admin_sidebar_style.css">
+</head>
+
+    <body>
+        <div class="sidebar">
+            <ul>
+                <div class="logo-container">
+                    <div class="logo">
+                        <span class="icon"></span>
+                        <span>Kunehouse</span>
+                        <hr>
+                    </div>
+                </div>
+                <li>
+                    <form action="{{ url_for('admin_dashboard') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Home</span>
+
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('manage_users') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Manage Users</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('manage_sellers') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M440-240h80v-40h40q17 0 28.5-11.5T600-320v-120q0-17-11.5-28.5T560-480H440v-40h160v-80h-80v-40h-80v40h-40q-17 0-28.5 11.5T360-560v120q0 17 11.5 28.5T400-400h120v40H360v80h80v40ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm0-80h480v-446L526-800H240v640Zm0 0v-640 640Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Applications</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('logout') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
+                                </svg>
+                            </span>
+                                <span class='text'>Log out</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            
+        </div>
+    </body>
+</html>

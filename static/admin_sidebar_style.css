@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --base-clr: #991930;
+    --light-clr: #be3557;
+    --accent-clr: #831122;
+    --text-clr: #292d31;
+    --gray-clr: #dae0ec;
+    --white-clr: #f0f2f7;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-areas:
+        "sidebar top-sidebar top-sidebar"
+        "sidebar main-content side-content";
+    grid-template-columns: 250px 1fr 500px;
+    grid-template-rows: 80px 1fr;
+
+    background: linear-gradient(to right, var(--white-clr), var(--gray-clr) );
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align elements to the top initially */
+    align-items: center; /* Center elements horizontally */
+    position: fixed;
+
+    background: linear-gradient(to bottom, var(--base-clr), var(--text-clr));
+    color: white;
+
+    height: calc(100vh - 20px); /* Adjusted for margin */
+    width: 60px; /* Compact width */
+    margin: 10px;
+    padding: 10px;
+
+    border-radius: 35px;
+    z-index: 10000;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: width 0.3s ease, justify-content 0.3s ease;
+}
+
+.sidebar:hover {
+    width: 180px; /* Expanded width */
+    justify-content: flex-start; /* Align elements to the top */
+    
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px; /* Add space below the logo */
+}
+
+.sidebar:hover .logo span {
+    opacity: 1; /* Show the text */
+    transform: translateY(0); /* Smooth transition effect */
+}
+
+.logo {
+    text-align: center;
+    width: 100%;
+}
+
+.logo span {
+    font-family: "Ephesis", serif;
+    font-weight: 400;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+
+
+.logo hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: var(--white-clr);
+    margin: 10px 0;
+}
+
+/* Sidebar Buttons */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.sidebar ul li button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--white-clr);
+    font-size: 15px;
+    font-weight: 500;
+    
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: left;
+
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar ul li button .icon {
+    transform: translateY(0);
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    transition: margin 0.3s ease;
+}
+
+.sidebar ul li button .text {
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+
+    flex: 1;
+}
+
+/* Hover Effects */
+.sidebar ul li:hover button {
+    background-color: var(--light-clr);
+    color: var(--white-clr);
+
+    justify-content: flex-start;
+}
+
+.sidebar ul li:hover svg {
+    fill: var(--light-clr); /* Change icon color on hover */
+    transition: fill 0.3s ease;
+}
+
+.sidebar:hover ul li button .icon {
+    margin-left: 0; 
+    margin-right: 0;
+}
+
+.sidebar:hover ul li button .text {
+    opacity: 1; 
+}
+
+/* Form in Sidebar */
+.sidebar form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px; /* Add space from previous elements */
+}

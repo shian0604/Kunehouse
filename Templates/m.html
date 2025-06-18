@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Main Interface | Kunehouse</title>
+    <link rel="stylesheet" href="../static/m_style.css">
+</head>
+
+<body>
+    
+    
+    {% include 'buyer_sidebar.html' %}
+
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="top-sidebar">
+        <div class="top-left">
+            <h1>Shop now!</h1>
+        </div>
+
+        <div class="top-right-icons">
+            <button class="icon-button">
+                <form>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
+                    </svg>
+                </form>
+            </button>
+
+            <button class="icon-button">
+                <form>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/>
+                    </svg>
+                </form>
+            </button>
+        </div>
+    
+        <form action="/search" method="POST">
+            <div class="search-bar">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+                <input type="text" placeholder="Search..." id="search" name="search" required>
+            </div>
+        </form> 
+    </div>
+
+    <div class="ads-section">
+        <div class="ads-in">
+            <img src="{{ url_for('static', filename='ads/f8bf94bfbc5af3b3a8404a0f2299439d.jpg') }}" alt="Ad 1" class="ad-image">
+            <img src="{{ url_for('static', filename='ads/906c72cd2e72d61826d4b772f0d1c216.jpg') }}" alt="Ad 2" class="ad-image">
+            <img src="{{ url_for('static', filename='ads/2398a555e3bb0cf73d4fe9caf6948efc.jpg') }}" alt="Ad 3" class="ad-image">
+        </div>
+    </div>
+      
+
+    <div class="profile-section">
+        <a href="{{ url_for('buyer_profile')}}" method="get">
+            {% if user['BuyerPicture'] %}
+                <img src="{{ url_for('static', filename='profile/' + user['BuyerPicture']) }}" alt="Profile Picture" class="profile-img">
+            {% else %}
+                <!-- Display default profile image if no user picture -->
+                <img src="{{ url_for('static', filename='icons/default_profile.jpg') }}" alt="Default Profile Picture" class="profile-img">
+            {% endif %}
+        
+            <h3>Profile</h3>
+            <p>Username: {{ user['BuyerName'] }}</p>
+            <p>Contacts: {{ user['BuyerContact'] }}</p>
+        </a>
+    </div>
+    
+    <div class="main-content">
+        {% if products %}
+            {% for product in products %}
+            <a href="{{ url_for('product_detail', product_id=product['ProductID']) }}">
+                <div class="product-item">
+                    <img src="{{ url_for('static', filename=product['ProductImg'][7:]) }}" alt="{{ product['ProductName'] }}">
+                    <h1>{{ product['ProductName'] }}</h1>
+                    <p>Store: {{ product['StoreName'] }}</p>
+                    <p>Category: {{ product['ProductCategory'] }}</p>
+                    <p>Price: ${{ product['ProductPrice'] }}</p>
+            
+                    <form>
+                        <button type="button" class="add-to-cart-btn" onclick="showPopup('{{ product.ProductID }}', event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/>
+                            </svg>
+                            <span class="tooltip">Add to Cart</span>
+                        </button>
+                    </form>
+                </div>
+            </a>
+            
+            <div id="add-to-cart-popup-{{ product.ProductID }}" class="popup hidden">
+                <div class="popup-content">
+                    <button class="close-btn" onclick="closePopup('{{ product.ProductID }}')">×</button>
+                    <h>Add to Cart</h2>
+
+                    <h1>{{ product['ProductName'] }}</h1>
+                    <div class="product-img-container">
+                        <img src="{{ url_for('static', filename=product['ProductImg'][7:]) }}" alt="{{ product.ProductName }}">
+                    </div>
+
+                    <form action="{{ url_for('add_to_cart') }}" method="POST">
+                        <input type="hidden" name="product_id" value="{{ product.ProductID }}">
+            
+                        <p>Select Color:</p>
+                        <div class="product-color">
+                            {% for color, hex in product.CustomColors.items() %}
+                                <label class="color-btn" style="background-color: {{ hex }};">
+                                    <input type="radio" name="product_color" value="{{ color }}" required>
+                                    <span title="{{ color }}"></span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <p>Select Size:</p>
+                        <div class="product-size">
+                            {% for size in product.ProductSizes %}
+                                <label class="size-btn">
+                                    <input type="radio" name="product_size" value="{{ size }}" required>
+                                    <span>{{ size }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <p>Quantity:</p>
+                        <input type="number" name="product_quantity" value="1" min="1" required>
+            
+                        <button type="submit" class="submit-btn">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% endfor %}
+        {% else %}
+            <p>No products available.</p>
+        {% endif %}
+
+        
+    </div>
+
+    <div class="Kunehouse-seller">
+        <h1>Join our Family!</h1>
+        <span>Turn your passion into profit—</span>
+        <span>let's hop together!</span>
+
+        <form action="registration" method="POST" class="registration-form">
+            <button type="submit">Register</button>
+        </form>
+
+    </div>
+    
+    <div class="side-content">
+        <h3>Privacy Policy</h3>
+        <div class="policy-links">
+            <p><a href="{{ url_for('privacy_policy') }}" target="_blank">Privacy Policy</a></p>
+            <p><a href="{{ url_for('terms_of_service') }}" target="_blank">Terms of Service</a></p>
+            <p><a href="{{ url_for('cookie_policy') }}" target="_blank">Cookie Policy</a></p>
+            <p><a href="{{ url_for('accesibility') }}" target="_blank">Acessibility</a></p>
+            <p><a href="{{ url_for('ads_info') }}" target="_blank">Ads info</a></p>
+        </div>
+
+        <p>© 2024 Kunehouse Corp.</p>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.ad-image');
+        const totalImages = images.length;
+      
+        function showNextImage() {
+          // Remove 'active' class from the current image
+          images[currentIndex].classList.remove('active');
+          
+          // Increment the index and wrap around if necessary
+          currentIndex = (currentIndex + 1) % totalImages;
+          
+          // Add 'active' class to the next image
+          images[currentIndex].classList.add('active');
+        }
+      
+        // Initially show the first image
+        images[currentIndex].classList.add('active');
+      
+        // Set interval to change the image every 3 seconds
+        setInterval(showNextImage, 3000);
+      </script>
+      
+    
+    <script src="../static/m_script.js"></script>    
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product['ProductName'] }}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/product_detail_style.css">
+
+    
+    <title>Product Detail | Kunehouse</title>
+</head>
+<body>
+    <div class="top">
+        <div class="back-button">
+            <form action="{{ url_for('buyer_dashboard') }}" method="GET">
+                <button type="submit" class="back-button-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M640-200 200-480l440-280v560Zm-80-280Zm0 134v-268L350-480l210 134Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <span class="logoo">Kunehouse</span>
+            <hr>
+        </div>
+
+        <div class="product-detail">
+            <div class="product-content">
+                <div class="product-img">
+                    <img src="{{ url_for('static', filename=product['ProductImg'][7:]) }}" alt="{{ product['ProductName'] }}">
+                </div>
+        
+                <div class="product-info">
+                    <h1>{{ product['ProductName'] }}</h1>
+        
+                    <h2>${{ product['ProductPrice'] }}</h2>
+                    <hr>
+        
+                    <p>Select Color:</p>
+                    <div class="product-color">
+                        {% for color, hex in custom_colors.items() %}
+                            <label class="color-btn" style="background-color: {{ hex }};">
+                                <input type="radio" name="product_color" value="{{ color }}">
+                                <span title="{{ color }}"></span> <!-- Tooltip shows the color name -->
+                            </label>
+                        {% endfor %}
+                    </div>
+        
+                    <p class="size-label">Select Size:</p>
+                    <div class="product-size">
+                        {% for size in product_sizes %}
+                            <label class="size-btn">
+                                <input type="radio" name="product_size" value="{{ size }}">
+                                <span>{{ size }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+    
+        
+                    <div class="quantity-container">
+                        <label for="product-quantity">Quantity:</label>
+                        <input type="number" id="product-quantity" name="product_quantity" value="1" min="1">
+                        <button type="button" id="decrease-quantity" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <button type="button" id="increase-quantity" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+        
+                    <div class="button-container">
+                        <form>
+                            <button class="order-now-btn" onclick="openOrderForm(event, '{{ product.ProductID }}')">Order Now</button>
+                        </form>
+
+                        <form>
+                            <button type="button" class="add-to-cart-btn" onclick="showPopup()">Add to Cart</button>
+                        </form>
+        
+                        <form action="{{ url_for('add_to_wishlist') }}" method="POST">
+                            <button type="submit" class="wishlist-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/>
+                                </svg>
+                                <input type="hidden" name="product_id" value="{{ product.ProductID }}">
+                            </button>
+                        </form>
+                    </div>
+        
+                    <div class="box-box">
+                        <button class="toggle-btn">
+                            <span class="toggle-text">Description</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000">
+                                <path d="M7 10l5 5 5-5H7z" />
+                            </svg>
+                        </button>
+                        <div class="details-content">
+                            <p>Store: {{ product['StoreName'] }}</p>
+                            <p>Category: {{ product['ProductCategory'] }}</p>
+                            <p>Subcategory: {{ product['ProductSubCategory'] }}</p>
+                            <p>Description: {{ product['ProductDescription'] }}</p>
+                            <p>Stocks: {{ product['ProductQuantity'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="order-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeOrderForm()">&times;</span>
+                    <form action="{{ url_for('place_order') }}" method="POST">
+                        <h3>Order Details</h3>
+                        <img src="{{ url_for('static', filename=product['ProductImg'][7:]) }}" alt="{{ product['ProductName'] }}">
+                        <input type="hidden" name="product_id" id="modal-product-id">
+            
+                        <p>Product: <span id="modal-product-name"></span></p>
+                        <p>Price: $<span id="modal-product-price"></span></p>
+            
+                        <!-- Select Color -->
+                        <p>Select Color:</p>
+                        <div class="product-color">
+                            {% for color, hex in custom_colors.items() %}
+                                <label class="color-btn" style="background-color: {{ hex }};">
+                                    <input type="radio" name="product_color" value="{{ color }}" required>
+                                    <span title="{{ color }}"></span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <!-- Select Size -->
+                        <p>Select Size:</p>
+                        <div class="product-size">
+                            {% for size in product_sizes %}
+                                <label class="size-btn">
+                                    <input type="radio" name="product_size" value="{{ size }}" required>
+                                    <span>{{ size }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <!-- Quantity -->
+                        <label for="product_quantity">Quantity:</label>
+                        <input type="number" name="product_quantity" value="1" min="1" required>
+            
+                        <button type="submit">Proceed to Order</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            <div id="add-to-cart-popup" class="popup hidden">
+                <div class="popup-content">
+
+                    <button class="close-btn" onclick="closePopup()">×</button>
+                    <h2>Add to Cart</h2>
+
+                    <img src="{{ url_for('static', filename=product['ProductImg'][7:]) }}" alt="{{ product['ProductName'] }}">
+                    <p>{{ product['ProductName'] }}</span></p>
+                    <p>${{ product['ProductPrice'] }}</span></p>
+                    
+                    <form action="{{ url_for('add_to_cart') }}" method="POST">
+                        <input type="hidden" name="product_id" value="{{ product['ProductID'] }}">
+            
+                        <p>Select Color:</p>
+                        <div class="product-color">
+                            {% for color, hex in custom_colors.items() %}
+                                <label class="color-btn" style="background-color: {{ hex }};">
+                                    <input type="radio" name="product_color" value="{{ color }}" required>
+                                    <span title="{{ color }}"></span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <p>Select Size:</p>
+                        <div class="product-size">
+                            {% for size in product_sizes %}
+                                <label class="size-btn">
+                                    <input type="radio" name="product_size" value="{{ size }}" required>
+                                    <span>{{ size }}</span>
+                                </label>
+                            {% endfor %}
+                        </div>
+            
+                        <p>Quantity:</p>
+                        <input type="number" name="product_quantity" value="1" min="1" required>
+            
+                        <button type="submit" class="submit-btn">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            
+            <hr class="review-separator">
+            <h3 class="review-label">Rating & Reviews</h3>
+
+            <div class="review-section">
+                <div class="product-rating">
+                        
+                    <div class="rating-info">
+                        <div class="rating-header">
+                            <h1>{{ average_rating }}</h1>
+                            <h3>/5</h3>
+                        </div>
+                        <p>({{ total_reviews }} total reviews)</p>
+                    </div>
+                    
+                    <div class="carrot-ratings">
+                        {% for rating in range(5, 0, -1) %}
+                        <div class="carrot-row">
+                            <img src="{{ url_for('static', filename='images/carrot.png') }}" alt="Carrot" class="carrot-icon">
+                            <span>{{ rating }}</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: {{ ratings_percentage[rating] }}%;"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                    
+                
+                
+                <div class="review-item">
+                    {% if product_reviews %}
+                        {% for review in product_reviews %}
+                            <!-- Buyer Information -->
+                            <div class="review-entry">
+                                <div class="buyer-info">
+                                    <img src="{{ url_for('static', filename='profile/' + review.BuyerPicture) }}" 
+                                         alt="{{ review.BuyerName }}" 
+                                         class="buyer-picture">
+                                    <p class="buyer-name"><strong>{{ review.BuyerName }}</strong></p>
+                                    <p class="review-date">{{ review.ReviewDate.strftime('%B %d, %Y') }}</p>
+                                </div>
+                
+                                <!-- Review Content -->
+                                <div class="review-content">
+                                    <!-- Rating -->
+                                    <div class="review-rating">
+                                        {% for i in range(review.Rating) %}
+                                            <img src="{{ url_for('static', filename='images/carrot.png') }}" alt="Carrot" class="carrot-icon filled">
+                                        {% endfor %}
+                                        {% for i in range(5 - review.Rating) %}
+                                            <img src="{{ url_for('static', filename='images/carrot.png') }}" alt="Carrot" class="carrot-icon empty">
+                                        {% endfor %}
+                                    </div>
+                
+                                    <!-- Review Text -->
+                                    <p class="review-text"><strong>Description:</strong> {{ review.ReviewText }}</p>
+                
+                                    <!-- Review Image -->
+                                    {% if review.ReviewImage %}
+                                    <div class="review-image">
+                                        <img src="{{ url_for('static', filename=review.ReviewImage) }}" 
+                                             alt="Review Image" 
+                                             class="review-img">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        
+                        
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-reviews">No reviews yet. Be the first to leave a review!</p>
+                    {% endif %}
+                    
+                </div>
+                
+
+            </div>
+                
+            <h3 class="suggested-label">Recommended for you</h3>
+            <div class="suggested-products">
+                <div class="product-grid">
+                    {% for item in recommended_products %}
+                    <div class="product-card">
+                        <a href="{{ url_for('product_detail', product_id=item['ProductID']) }}">
+                            <img src="{{ url_for('static', filename=item['ProductImg'][7:]) }}" 
+                                 alt="{{ item['ProductName'] }}" class="product-image">
+                        
+                            <p class="product-name">{{ item['ProductName'] }}</p>
+                            <p class="product-price">${{ item['ProductPrice'] }}</p>
+                        </a>
+                
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            
+            
+
+            
+        </div>
+    </div>
+
+    <script src="../static/product_detail_script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,1068 @@
+/* Existing styles */
+:root {
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr: #aca644;
+    --peach-clr: #f4d2af;
+    --orange-clr: #e47645;
+    --secondary-clr: #efa05d;
+    --lavender: #bbb7e5;
+    --snow: #dae9fa;
+    --rose: #f7dfdf;
+    --pistachio: #b6c687;
+    --babypink: #efbdbd;
+    --paleyellow: #f3edbd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #faf0ca;
+    background: linear-gradient(to right, #faf0ca, #f5e7c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+
+    opacity: 0; /* Start with invisible body */
+    animation: bounceInPage 0.5s ease-out 1 forwards;
+}
+@keyframes bounceInPage {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+ 
+    100% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+   
+}
+
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+.back-button {
+    position: absolute; /* Positioning the button */
+    top: 20px; /* Distance from the top of the form */
+    left: 20px; /* Distance from the left of the form */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: -70px;
+}
+
+.back-button-style {
+    background-color: #e47645; /* Background color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items */
+    align-items: center; /* Center items vertically */
+}
+
+.back-button-style svg {
+    fill: #FFFFFF; /* Icon color */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+/* Optional: Change background color on hover */
+.back-button-style:hover {
+    background-color: #efa05d; /* Darker shade on hover */
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+    overflow: hidden;
+
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    padding: 20px;
+    display: flex; /* Enable flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    position: relative;
+}
+
+.logoo {
+    display: block;
+    text-align: center;
+    letter-spacing: 4px;
+
+    color: #e47645;
+    font-size: 16px;
+
+    font-family: "Rubik Dirt", serif;
+    font-weight: 400;
+    font-style: normal;
+
+    text-transform: uppercase;
+    width: 100%;
+}
+.logo {
+    width: 100%;
+}
+
+.logo hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    margin: 10px 0;
+
+    width: 100%;
+}
+
+
+.product-detail {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* Align to the top */
+    width: 100%; /* Full width of the container */
+    margin-top: 20px; /* Space below the logo */
+    gap: 20px;
+    position: relative;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.product-img {
+    flex: 1;
+
+    display: flex;
+
+}
+
+.product-img img {
+    height: 550px;
+    width: 380px; 
+
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+product-info {
+    display: flex;
+
+    flex-direction: column;
+    margin-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-info h1 {
+    text-align: left;
+    font-size: 36px;
+    color: #333;
+    
+    margin-bottom: 10px;
+}
+
+.product-info h2 {
+    text-align: left;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+
+}
+
+.product-info hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+.product-info p {
+    font-size: 12px;
+    color: #555;
+}
+
+/* Quantity container styling */
+.quantity-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Styling for quantity label */
+.quantity-container label {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+/* Styling for the quantity buttons */
+.quantity-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    width: 24px;
+    height: 24px;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effect for quantity buttons */
+.quantity-btn:hover {
+    background-color: #ddd;
+}
+
+/* Styling for the quantity input field */
+.quantity-container input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 5px;
+    margin: 0;
+}
+
+/* Focus effect on the quantity input */
+.quantity-container input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+
+
+
+/* Styling the product size section */
+.product-size {
+
+    display: flex;
+    gap: 10px; /* Space between checkboxes */
+    margin-top: 8px;
+
+}
+
+.size-label {
+    margin-top: 10px;
+}
+.size-btn {
+    margin: 0;
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    background-color: #e7e7e7; /* Button-like background */
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    user-select: none;
+    color: #333;
+
+    text-align: center;
+    height: 36px;
+    width: 100%;
+
+}
+
+.size-btn input {
+    position: absolute;
+    opacity: 0; 
+    pointer-events: none;
+    width: 100%;
+}
+
+.product-size input:checked + span {
+    background-color: #e47645; /* Change background when checked */
+    color: #fff; /* Change text color */
+
+}
+
+
+.size-btn span {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Optional: Hover effect */
+.size-btn:hover {
+    background-color: #e47f4f;
+}
+
+.size-btn:hover span {
+    color: white;
+}
+
+.product-color {
+    display: flex;
+    gap: 20px; /* Space between color options */
+    margin-top: 8px;
+    align-self: center;
+    justify-content: center;
+}
+
+.color-btn {
+    align-self: center;
+
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    width: 36px; /* Set size of the color button */
+    height: 36px;
+
+    border-radius: 6px;
+    overflow: hidden;
+
+    
+    transition: all 0.3s ease;
+}
+
+.color-btn span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; /* Match parent's border-radius */
+    transition: border 0.3s ease;
+}
+
+.color-btn input {
+    position: absolute;
+    opacity: 0; /* Hide the default radio button */
+    pointer-events: all; /* Enable interaction */
+    z-index: 10;
+}
+
+.color-btn input:checked {
+    outline: none;
+}
+
+.color-btn input:checked + span {
+    border: 2px solid #333; /* Highlight selected color */
+    border-radius: 6px; /* Ensure circular border */
+}
+
+.color-btn:hover {
+    background-color: #dae9fa;
+    opacity: 50%;
+    
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 16px; /* Adjust as needed */
+}
+
+.below {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.button-container svg {
+    fill: #555;
+}
+
+.button-container form {
+    flex: 1; /* Allow forms to expand equally */
+}
+
+.button-container form:last-child {
+    flex: 0; /* Prevent wishlist button from taking full width */
+}
+
+
+
+button:active {
+    transform: scale(0.98); /* Add click feedback */
+}
+
+.add-to-cart-btn {
+    border: none;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e47f4f; /* Adjust hover color */
+    color: #fff;
+}
+
+.order-now-btn {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #e47645;
+    transition: all 0.3s ease;
+}
+
+.order-now-btn:hover {
+    background-color: #efa05d;
+
+}
+
+.wishlist-btn {
+    border: none;
+    transition: all 0.3s ease;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background-color: #e7e7e7; /* Wishlist color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.wishlist-btn:hover {
+    background-color: #e47645;
+}
+
+.wishlist-btn:hover svg {
+    fill: #fff;
+}
+
+.toggle-btn {
+    margin-top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    justify-content: space-between;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    outline: none;
+}
+
+.box-box {
+    border: 1px solid #ddd; /* Initial border */
+    border-radius: 10px;
+    overflow: hidden; /* Hide content that overflows */
+    transition: all 0.4s ease; /* Smooth transition for border expansion */
+    margin-top: 20px;
+    padding: 10px;
+
+    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.details-content {
+    text-align: left;
+    margin-top: 0;
+    transform: scaleY(0); /* Initially collapsed */
+    transform-origin: top; /* Start the expansion from the top */
+    opacity: 0; /* Hidden by default */
+    max-height: 0; /* Ensure no content shows */
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+    padding: 0; 
+}
+
+.details-content.active {
+    transform: scaleY(1); /* Smoothly expand the content */
+    opacity: 1; /* Show the content */
+    max-height: 500px; /* Make sure there's enough space for the content */
+    padding: 10px 0;
+}
+
+
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.product-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+
+.review-label {
+    color: #333;
+    margin-top: 20px
+}
+
+.review-separator {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.review-section {
+    width: 100%;
+    display: flex;
+    
+
+    justify-content: space-between;
+    align-items: flex-start;
+   padding: 10px;
+}
+
+
+.review-section {
+    display: flex;
+    width: 100%;
+}
+
+.product-rating {
+    display: flex;
+    width: 50%;
+    text-align: left;
+}
+
+.rating-info {
+    display: flex;
+    flex-direction: column; /* Stack rating header and reviews */
+    justify-content: space-between; /* Distribute space between elements */
+    
+}
+
+.rating-header {
+    display: flex;
+    align-items: baseline; /* Align numbers and text baseline for better appearance */
+    gap: 5px; /* Add some spacing between h1 and h3 */
+}
+
+.rating-header h1 {
+    font-size: 4em; /* Large font size for the rating number */
+    margin: 0;
+    color: #333;
+}
+
+.rating-header h3 {
+    font-size: 1.5em; /* Smaller font size for "/5" */
+    margin: 0;
+    color: #ccc;
+}
+
+.rating-info p {
+    font-size: 5px; /* Normal size for the total reviews text */
+    margin: 0;
+    
+}
+
+
+.carrot-ratings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-left: 36px;
+}
+
+.carrot-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carrot-row span {
+    font-size: 1em;
+    color: #333;
+    text-align: center;
+}
+
+.carrot-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.progress-bar {
+    position: relative;
+    flex: 1; /* Take remaining space */
+    height: 6px;
+    background-color: #e7e7e7;
+    border-radius: 5px;
+    overflow: hidden;
+
+    width: 50px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #e47645; /* Progress color */
+    border-radius: 5px;
+}
+
+
+
+
+.product-rating p {
+    font-size: 14px;
+    color: #555;
+}
+
+.customer-box {
+    display: flex;
+
+    border: 1px solid #ddd; /* Initial border */
+    border-radius: 10px;
+    overflow: hidden; /* Hide content that overflows */
+
+    
+    padding: 10px;
+
+    height: 9em;
+}
+
+.customer-rating {
+    display: flex;
+    max-width: 100%;
+    text-align: right;
+}   
+
+.customer-rating p {
+    font-size: 14px;
+    color: #555;
+}
+
+.review-item::-webkit-scrollbar{
+    width: 10px;
+}
+
+.review-item::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+.review-item::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+
+/* General Review Item Styles */
+.review-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    width: 20em;
+    height: 9em;
+    overflow: auto;
+    flex-direction: column;
+}
+
+/* Buyer Information Section */
+/* Review Entry */
+.review-entry {
+    display: flex; /* Ensure the review-entry behaves like a row */
+    align-items: flex-start; /* Align items at the top */
+    width: 100%; /* Take full width of the container */
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+
+}
+
+
+
+/* Buyer Information Section */
+.buyer-info {
+    width: 100px; /* Fixed width for consistent alignment */
+    text-align: center;
+    margin-right: 10px; /* Add space between buyer-info and review-content */
+}
+
+
+
+/* Review Content Section */
+.review-content {
+    flex: 1; /* Take up the remaining space */
+    text-align: left; /* Align text to the left */
+}
+
+/* Review Rating Section */
+.review-rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align rating icons with the left */
+    margin-bottom: 5px;
+}
+
+
+.buyer-picture {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ddd;
+    padding: 2px;
+    border-radius: 50%;
+    margin: 0 auto 5px auto;
+}
+
+.buyer-name {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.review-date {
+    font-size: 0.85em;
+    color: #666;
+}
+
+/* Review Content Section */
+
+
+.carrot-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+/* Filled Carrot Icon */
+.carrot-icon.filled {
+    fill: #F9DC5C; /* Adjust the color of the filled carrot */
+}
+
+/* Empty Carrot Icon */
+.carrot-icon.empty {
+    opacity: 0.3; /* Adjust the opacity of the empty carrot */
+}
+
+
+.review-text {
+    text-align: justify;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.review-image {
+    margin-top: 10px;
+}
+
+.review-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    justify-content: center;
+
+}
+
+
+/* No Reviews Message */
+.no-reviews {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    color: #666;
+    text-align: center;
+
+    height: 9em;
+
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content img {
+    height: 10em;
+    width: 10em;
+    border-radius: 5px;
+}
+
+.popup-content p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    background: #e47645;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #efa05d;
+}
+
+.modal {
+    display: none; /* Ensure modal is hidden by default */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    justify-content: column;
+    text-align: center;
+}
+
+.modal-content img {
+    height: 10em;
+    width: 10em;
+    border-radius: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.modal-content p{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.modal-content h3{
+    margin-bottom: 10px;
+}
+.product-color {
+    margin-top: 10px;
+}
+/* Style for the quantity label */
+label[for="product_quantity"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+/* Style for the quantity input field */
+input[name="product_quantity"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Focus effect for the input field */
+input[name="product_quantity"]:focus {
+    outline: none;
+    border-color: #666; /* Blue border on focus */
+}
+
+/* Optional: Add margin below the label-input pair for spacing */
+.quantity-container {
+    margin-bottom: 15px;
+}
+.modal-content button {
+    margin-top: 20px;
+    background: #e47645;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #efa05d;
+}
+
+/* Suggested products container */
+.suggested-products {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.suggested-products h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Product grid layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns */
+    gap: 20px; /* Spacing between product cards */
+    justify-items: center;
+}
+
+/* Product card */
+.product-card {
+    background-color: #fff;
+    border: 1px solid #cacaca;
+    border-radius: 15px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Product image */
+.product-card .product-image {
+    width: 100%;
+    height: 10em;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Product name */
+.product-card .product-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+
+
+/* Product price */
+.product-card .product-price {
+    font-size: 12px;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.product-card a {
+    text-decoration: none;
+}
+
+.suggested-label{
+    color: #333;
+
+}
+

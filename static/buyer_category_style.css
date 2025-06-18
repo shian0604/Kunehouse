@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr:#aca644;
+    --peach-clr:#f4d2af;
+    --orange-clr:#e47645;
+    --secondary-clr: #efa05d;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-areas: 
+        "sidebar top-sidebar top-sidebar"
+        "sidebar main-content side-content";
+    grid-template-columns: 250px 1fr 500px;
+    grid-template-rows: 80px 1fr;
+
+    background-color: #fff0dd;
+    background: linear-gradient(to right, #fff0dd, #f4d2af);
+    overflow: hidden;
+    overflow-y: auto;
+
+
+    animation: fadeInUp 1s ease-out;
+
+}
+
+
+@keyframes fadeInUp {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+
+
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 20em 0 0 80px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 46.5em;
+    min-height: 40em;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container for products */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Individual product card */
+.product-item {
+    text-decoration: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: calc(33.33% - 20px); /* 3 items per row with spacing */
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Zoom effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Image Styling */
+.product-item img {
+    max-width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover img {
+    transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+/* Product Name */
+.product-item h1 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* Description and other details */
+.product-item p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.product-item svg {
+    width: 20px;
+    height: 16px;
+}
+
+
+/* Parent container for the dropdown */
+/* Container for the dropdown */
+.subcategory-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button styling */
+.subcategory-dropdown button {
+    background-color: #e47645; /* Primary color */
+    color: #fff; /* Contrasting white text */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded edges for modern look */
+    padding: 10px 15px; /* Comfortable padding */
+    font-size: 16px; /* Larger text for readability */
+    font-weight: bold; /* Emphasize button text */
+    cursor: pointer; /* Indicate interactivity */
+    display: flex; /* Align content */
+    align-items: center; /* Center SVG and text */
+    gap: 10px; /* Space between SVG and text */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+/* Icon inside the button */
+.subcategory-dropdown button svg {
+    fill: #fff; /* Match the icon color with text */
+    transition: transform 0.3s ease; /* Rotate icon on interaction */
+}
+
+/* Button hover and focus effects */
+.subcategory-dropdown button:hover {
+    background-color: #efa05d; /* Darker shade on hover */
+    transform: scale(1.05); /* Slight zoom for interactivity */
+}
+
+/* Rotate the icon when dropdown is visible */
+.subcategory-dropdown button:hover svg {
+    transform: rotate(90deg); /* Indicate the dropdown toggle */
+}
+
+/* Dropdown visibility */
+#subcategory-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 0;
+    background-color: #fff; /* White background for contrast */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px; /* Match button style */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    z-index: 1000; /* Ensure it appears above other elements */
+    min-width: 200px; /* Ensure a consistent dropdown size */
+    padding: 10px 0; /* Add spacing inside dropdown */
+}
+
+/* Show dropdown when visible class is added */
+#subcategory-dropdown.visible {
+    display: block;
+}
+
+/* Dropdown links styling */
+#subcategory-dropdown a {
+    padding: 10px 20px; /* Comfortable click area */
+    display: block; /* Make links take full width */
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Neutral text color */
+    font-size: 14px; /* Readable size */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth interaction */
+}
+
+/* Dropdown links hover effect */
+#subcategory-dropdown a:hover {
+    background-color: #f0f0f0; /* Light grey hover effect */
+    color: #e47645; /* Match hover text with button theme */
+    font-weight: bold; /* Emphasize hovered item */
+}
+
+
+
+
+.category-filter {
+    grid-area: top-sidebar;
+    margin: 2em 280px 0 80px;
+    
+    width: 44.1em;
+    height: 11.5em;
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 20px;
+
+}
+
+
+.category-filter nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+
+    width: 8em;
+    height: 8em;
+    padding: 10px;
+}
+
+.category-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.category-item a:hover {
+    color: #e47645;
+    transform: scale(1.1);
+}
+
+.category-item a.active {
+    color: #e47645;
+}
+
+.category-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.category-item a:hover img {
+    transform: scale(1.1);
+    border-color: #e47645;
+}

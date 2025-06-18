@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+        
+    <link rel="stylesheet" href="../static/seller_sidebar_style.css">
+</head>
+
+    <body>
+        <div class="sidebar">
+            <ul>
+                <div class="logo-container">
+                    <div class="logo">
+                        <span class="icon"></span>
+                        <span>Kunehouse</span>
+                        <hr>
+                    </div>
+                </div>
+                <li>
+                    <form action="{{ url_for('seller_ui') }}" method="GET">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Home</span>
+
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('seller_products') }}" method="GET">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Products</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('orders') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M160-160v-516L82-846l72-34 94 202h464l94-202 72 34-78 170v516H160Zm240-280h160q17 0 28.5-11.5T600-480q0-17-11.5-28.5T560-520H400q-17 0-28.5 11.5T360-480q0 17 11.5 28.5T400-440ZM240-240h480v-358H240v358Zm0 0v-358 358Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Orders</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('sales')}}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Sales</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('seller_profile')}}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                                </svg>
+                            </span>
+                            <span class='text'>Profile</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('logout') }}" method="get">
+                        <button>
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
+                                </svg>
+                            </span>
+                                <span class='text'>Log out</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/manage_sellers_style.css">
+    <title>Manage Sellers | Kunehouse</title>
+</head>
+
+<body>
+    {% include 'admin_sidebar.html' %}
+
+    <div class="top-sidebar">
+        <h1>Manage Sellers</h1>
+    </div>
+
+    <div class="main-top">
+        <div class="totals-container">
+            <div class="total-box">
+                <h3>Total Admin</h3>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="total-box">
+                <h3>Total Buyers</h3>
+                <p>{{ total_buyers }}</p>
+            </div>
+            <div class="total-box">
+                <h3>Total Sellers</h3>
+                <p>{{ total_sellers }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+
+            <h1>Manage Sellers</h1>
+            <!-- Form for handling bulk actions -->
+            <form action="{{ url_for('manage_sellers') }}" method="POST">
+                <!-- Select All Checkbox -->
+                <label>
+                    <input type="checkbox" id="select-all" /> Select All
+                </label>
+        
+                <!-- Seller Table -->
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all"></th>
+                            <th>Store Name</th>
+                            <th>Email</th>
+                            <th>Contact Number</th>
+                            <th>BIR</th>
+                            <th>Bank Account</th>
+                            <th>Application Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for seller in sellers %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_sellers" value="{{ seller.SellerID }}"></td>
+                                <td>{{ seller.StoreName }}</td>
+                                <td>{{ seller.SellerEmail }}</td>
+                                <td>{{ seller.SellerContact }}</td>
+                                <td>{{ seller.SellerBIR }}</td>
+                                <td>{{ seller.SellerBankAccount }}</td>
+                                <td>
+                                    <!-- Dropdown for Application Status -->
+                                    <select name="application_status_{{ seller.SellerID }}">
+                                        <option value="Pending" {% if seller.ApplicationStatus == 'pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Approved" {% if seller.ApplicationStatus == 'approved' %}selected{% endif %}>Approved</option>
+                                        <option value="Declined" {% if seller.ApplicationStatus == 'declined' %}selected{% endif %}>Declined</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+                <!-- Save Button -->
+                <div class="actions">
+                    <button type="submit" name="action" value="save">Save Changes</button>
+    
+                    <button type="submit" name="action" value="delete_selected" 
+                    onclick="return confirm('Are you sure you want to delete the selected sellers?');">Delete Selected</button>
+                </div>
+            </form>
+        </div>    
+    </div>
+
+    <div class="side-content">
+
+    </div>
+    <script src="../static/manage_sellers_script.js"></script>
+
+</body>
+</html>
+
+

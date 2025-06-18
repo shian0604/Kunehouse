@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root {
+    --base-clr:#103946;
+    --accent-clr: #d0c4a1;
+    --right-clr: #dfd7bb;
+    --left-clr: #eee7d3;
+
+
+    --text-clr: #292d31;
+    --gray-clr: #dae0ec;
+    --white-clr: #fff;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background: linear-gradient(to right, #fff, var(--right-clr));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--base-clr);
+    border-radius: 8px;
+}
+
+
+.add form{
+    background-color: var(--white-clr);
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.edit form{
+    background-color: var(--white-clr);
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    height: auto;
+    transition: all 0.6s ease-in-out;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--base-clr);
+}
+
+.form-description {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--accent-clr);
+    font-size: 16px;
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ccc;
+    font-size: 16px;
+    font-family: "Ephesis", cursive;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 4px;
+}
+
+label {
+    font-size: 14px;
+    color: var(--base-clr);
+    display: block;
+    margin-bottom: 0;
+    transform: translateY(5px);
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Button */
+.form-container button {
+    width: 100%; /* Make the button span the entire width */
+    padding: 12px; /* Increase padding for better visibility */
+    background: linear-gradient(to right,var(--base-clr), var(--accent-clr));
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    font-size: 16px;
+    cursor: pointer; /* Shows the clickable cursor */
+    margin-top: 15px;
+    transition: background 0.3s ease; /* Smooth transition for background change */
+}
+
+.form-container button:hover {
+    background-color: var(--accent-clr);
+}
+
+/* Size Options */
+.size-options,
+.color-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; /* Add space below the sections */
+}
+
+.size-options label,
+.color-options label {
+    margin-left: 8px; /* Space between the checkbox and label */
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.size-options input[type="checkbox"],
+.color-options input[type="checkbox"] {
+    margin-right: 5px; /* Space between the checkbox and the label */
+    appearance: none; /* Remove default checkbox styling */
+    width: 20px; /* Set size */
+    height: 20px; /* Set size */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 50%; /* Make it circular */
+    outline: none; /* Remove focus outline */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.size-options input[type="checkbox"],
+.color-options input[type="checkbox"] {
+    margin-right: 5px; /* Space between the radio button and the label */
+}
+
+.size-options label,
+.color-options label {
+    margin-right: 15px; /* Space between each option */
+    font-size: 14px; /* Font size for consistency */
+    display: flex;
+    align-items: center;
+}
+
+.size-options input[type="checkbox"]:checked + label,
+.color-options input[type="checkbox"]:checked + label {
+    font-weight: bold; /* Highlight selected options */
+    color: var(--base-clr); /* Change text color of selected labels */
+}
+
+.size-options input[type="checkbox"]:checked,
+.color-options input[type="checkbox"]:checked {
+    background-color: var(--base-clr);
+    border-color: var(--base-clr);
+}
+
+.size-options input[type="checkbox"]:hover,
+.color-options input[type="checkbox"]:hover {
+    border-color: var(--accent-clr); /* Border color on hover */
+}
+
+
+input[type="number"] {
+    transform: translateY(15px);
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for input */
+    margin-bottom: 15px; /* Space below input */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    text-align: center; /* Center text */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button; /* Show the inner spin button for Chrome/Safari */
+}
+
+input[type="number"]::-moz-inner-spin-button,
+input[type="number"]::-moz-outer-spin-button {
+    display: block; /* Ensure the spin button displays for Firefox */
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+
+.custom-file-upload {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    position: relative;
+    margin-left: -1px;
+}
+
+.custom-file-upload:hover {
+    background-color: #eaeaea; /* Change background on hover */
+}
+
+.custom-file-upload span {
+    color: #333; /* Text color */
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.custom-file-upload:before {
+    content: "\f15b"; /* Font Awesome upload icon */
+    font-family: 'Font Awesome 6 Free'; /* Adjust according to the version you use */
+    font-weight: 900; /* Adjust if using solid icons */
+    margin-right: 8px; /* Spacing between icon and text */
+    vertical-align: middle; /* Align icon vertically with text */
+}
+
+
+.back-button {
+    position: absolute; /* Positioning the button */
+    top: 20px; /* Distance from the top of the form */
+    left: 20px; /* Distance from the left of the form */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: -70px;
+}
+
+.back-button-style {
+    background-color: var(--base-clr); /* Background color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items */
+    align-items: center; /* Center items vertically */
+}
+
+.back-button-style svg {
+    fill: #FFFFFF; /* Icon color */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+/* Optional: Change background color on hover */
+.back-button-style:hover {
+    background-color: var(--accent-clr); /* Darker shade on hover */
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+        width: 90%;
+    }
+    
+    .size-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .size-options label {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

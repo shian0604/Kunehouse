@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/rs_style.css">
+    <title>Seller Registration Form | Kunehouse</title>
+</head>
+
+<body>
+
+    {% include 'flash.html' %}
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form action="/seller_final" method="POST">
+                <h1>Seller Registration</h1>
+                <span>Fill in the details !</span>
+                <h2>Store Information</h2>
+                <input type="text" id="storename" name="storename" placeholder="Store Name" required>
+                <hr>
+                <h2>Bank Details</h2>
+                <input type="text" id="phonenumber" name="phonenumber" placeholder="09XX-XXX-XXXX" required 
+                pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}">
+                <input type="text" id="bir" name="bir" placeholder="BIR" required>
+                <input type="text" id="bankaccount" name="bankaccount" placeholder="bankaccount" required>
+
+                <button>Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../static/rs_script.js"></script>
+</body>
+
+</html>
+

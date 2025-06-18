@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/add_item.css">
+    <title>Edit Item | Kunehouse</title>
+
+</head>
+<body>
+    <div class="top">
+        <div class="back-button">
+            <form action="{{ url_for('edit_back') }}" method="POST">
+                <button type="submit" class="back-button-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M640-200 200-480l440-280v560Zm-80-280Zm0 134v-268L350-480l210 134Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="edit" id="edit">
+        <div class="form-container">
+            <form action="{{ url_for('edit_product', product_id=product_id) }}" method="POST" enctype="multipart/form-data">
+                <h1>Edit Product</h1>
+                <span class="form-description">KUNEHOUSE</span>
+    
+                <label for="productname">Product Name</label><br>
+                <input type="text" id="productname" name="productname" value="{{ product[0] }}" placeholder="Product Name" required>
+    
+                <label for="productprice">Price</label><br>
+                <input type="text" id="productprice" name="productprice" value="{{ product[1] }}" placeholder="Price" required>
+    
+                <label for="productcategory">Category</label><br>
+                <select id="productcategory" name="productcategory" required>
+                    <option value="pet essentials" {% if product[2] == 'pet essentials' %}selected{% endif %}>Pet Essentials</option>
+                    <option value="health and wellness" {% if product[2] == 'health and wellness' %}selected{% endif %}>Health and Wellness</option>
+                    <option value="toys" {% if product[2] == 'toys' %}selected{% endif %}>Toys</option>
+                    <option value="clothing and accessory" {% if product[2] == 'clothing and accessory' %}selected{% endif %}>Clothing and Accessories</option>
+                    <option value="furniture" {% if product[2] == 'furniture' %}selected{% endif %}>Furniture</option>
+                    <option value="housing and enclosure" {% if product[2] == 'housing and enclosure' %}selected{% endif %}>Housing and Enclosure</option>
+                    <option value="training and behavior" {% if product[2] == 'training and behavior' %}selected{% endif %}>Training and Behavior</option>
+                    <option value="outdoor and activity gear" {% if product[2] == 'outdoor and activity gear' %}selected{% endif %}>Outdoor and Activity Gear</option>
+                </select>
+    
+                <label for="subcategory">Subcategory</label><br>
+                <select id="subcategory" name="subcategory" required>
+                    <option value="{{ product[3] }}" selected>{{ product[3] }}</option>
+                    <!-- Add additional options dynamically if needed -->
+                </select>
+    
+                <label for="productquantity">Quantity</label>
+                <input type="number" id="productquantity" name="productquantity" value="{{ product[6] }}" min="1" placeholder="Quantity" required>
+    
+                <label for="productsize">Size</label><br>
+                <div class="size-options">
+                    {% for size in ['S', 'M', 'L', 'XL'] %}
+                    <input type="checkbox" id="size-{{ size }}" name="productsize" value="{{ size }}" 
+                    {% if size in product_sizes %}checked{% endif %}>
+                    <label for="size-{{ size }}">{{ size }}</label>
+                    {% endfor %}
+                </div>
+    
+                <label for="productcolor">Color</label><br>
+                <div class="color-options">
+                    {% for color in ['Red', 'Blue', 'Green', 'Yellow'] %}
+                    <input type="checkbox" id="color-{{ color }}" name="productcolor" value="{{ color }}" 
+                    {% if color in product_colors %}checked{% endif %}>
+                    <label for="color-{{ color }}">{{ color }}</label>
+                    {% endfor %}
+                </div>
+    
+                <label for="productdescription">Description</label><br>
+                <textarea rows="3" cols="30" id="productdescription" name="productdescription" placeholder="Description" required>{{ product[7] }}</textarea>
+    
+                <label for="productimage" class="custom-file-upload">
+                    <span>Choose Product Image</span>
+                </label>
+                <input type="file" accept="image/*" id="productimage" name="productimage">
+    
+                <button type="submit">Update Product</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

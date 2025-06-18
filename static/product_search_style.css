@@ -1,0 +1,264 @@
+:root{
+    --base-clr: #fff0dd;
+    --text-clr: #333;
+    --second-text-clr: #555;
+    --green-clr:#aca644;
+    --peach-clr:#f4d2af;
+    --orange-clr:#e47645;
+    --secondary-clr: #efa05d;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    background-color: #faf0ca;
+    background: linear-gradient(to right, #faf0ca, #f5e7c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+
+.top-content{
+    margin-top: 5em;
+
+    border-radius: 20px;
+
+
+    background-color: #fff;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 44.1em;
+    height: 1.5em;
+
+}
+
+.top-content form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    height: auto;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and input */
+    flex-grow: 1; /* Allows search bar to fill the available space */
+    background-color: #f0f0f0; /* Light background for search area */
+    border-radius: 10px;
+    padding: 10px;
+    
+    height: auto;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    flex-grow: 1; /* Make input take available space */
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    width: 100%;
+}
+
+/* Button Styling */
+/* Filter Options Dropdown Styling */
+.filter-options {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Positioned just below the button */
+    margin-top: 5px;
+    left: -10px; /* Adjusted to the left of the button */
+    background-color: #ffffff; /* Light background for the dropdown */
+    color: #333; /* Dark text for contrast */
+    padding: 12px 20px; /* More padding for spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+    z-index: 1000;
+    width: 220px; /* Fixed width for the dropdown */
+    border: 1px solid #e0e0e0; /* Light border around the dropdown */
+    font-size: 14px; /* Smaller font for the options */
+}
+
+/* Hover effect for the dropdown options */
+
+.filter-options select {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+    padding: 5px;
+    background-color: #f9f9f9; /* Light background for the options */
+    border: 1px solid #ccc; /* Border around the select and label */
+    border-radius: 5px; /* Rounded corners for input/select elements */
+}
+
+/* Hover effect for select options */
+.filter-options select:hover {
+    background-color: #e8e8e8; /* Slightly darker background on hover */
+    border-color: #c6c6c6; /* Darker border on hover */
+}
+
+/* Focus effect for select options */
+.filter-options select:focus{
+    background-color: #f0f0f0;
+    border-color: #c6c6c6;
+    outline: none; /* Remove default focus outline */
+}
+
+/* Add a little padding to the dropdown options */
+.filter-options select {
+    width: 100%;
+    padding: 8px 12px; /* Padding for comfort */
+}
+
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e47645; /* Button color */
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    height: 20px;
+    width: auto;
+}
+
+.filter-button .btn {
+    background-color: #e47645;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+}
+
+.filter-button .btn svg {
+    margin: 0;
+}
+
+.back-button {
+    position: absolute; /* Positioning the button */
+    top: 20px; /* Distance from the top of the form */
+    left: 20px; /* Distance from the left of the form */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: -70px;
+}
+
+.back-button-style {
+    background-color: #e47645; /* Background color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items */
+    align-items: center; /* Center items vertically */
+}
+
+.back-button-style svg {
+    fill: #FFFFFF; /* Icon color */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+/* Optional: Change background color on hover */
+.back-button-style:hover {
+    background-color: #efa05d; /* Darker shade on hover */
+}
+
+.main-content {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 46.5em;
+    min-height: 40em;
+    max-height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+/* Grid layout for products */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Automatically adjust the number of columns */
+    gap: 20px; /* Space between product cards */
+    width: 100%;
+}
+
+/* Product Card Styling */
+.product-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Hover Effect for Product Card */
+.product-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+

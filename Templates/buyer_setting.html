@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+        <title>Settings | Kunehouse</title>
+        <link rel="stylesheet" href="../static/buyer_settings_style.css">
+    </head>
+
+    <body>
+
+        <div class="top">
+            <div class="back-button">
+                <form action=" {{ url_for('buyer_profile') }}" method="get">
+                    <button type="submit" class="back-button-style">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M640-200 200-480l440-280v560Zm-80-280Zm0 134v-268L350-480l210 134Z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Settings</h1>
+            <span class="form-description">Kunehouse</span>
+            
+            <!-- Change Password Form -->
+            <form method="POST" class="settings-form">
+                <div class="form-group">
+                    <label for="new_password">New Password</label>
+                    <input type="password" name="new_password" id="new_password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password">Confirm New Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" required>
+                </div>
+                
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+        
+            <!-- My Address Button -->
+            <form action="{{ url_for('my_address') }}" method="get" class="address-form">
+                <button type="submit" class="btn-address">My Address</button>
+            </form>
+        </div>
+        
+    </body>
+</html>

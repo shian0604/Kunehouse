@@ -1,0 +1,158 @@
+/* Apply Flexbox to the body to ensure footer stays at the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  /* Full viewport height */
+    margin: 0;      /* Remove default margin */
+
+    align-items: center;
+}
+
+.flash-message {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeout 3s ease forwards;
+}
+
+/* Success flash message styling */
+.flash-message.success {
+    background-color: #4caf50; /* Green */
+}
+
+/* Error flash message styling */
+.flash-message.error {
+    background-color: #f44336; /* Red */
+}
+
+/* Warning flash message styling */
+.flash-message.warning {
+    background-color: #ff9800; /* Orange */
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+main {
+    flex-grow: 1;   /* Allow the main content to take up available space */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;  /* Ensure footer stays at the bottom of the page */
+}
+
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.main {
+    margin: 20px;
+}
+
+.admin-controls {
+    margin-bottom: 20px;
+}
+
+.admin-controls button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.admin-controls button:hover {
+    background-color: #218838;
+}
+
+#toggle-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+#table-container {
+    margin-top: 20px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+

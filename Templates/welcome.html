@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunehouse | Welcome Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/wc_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Flash Messages -->
+    <div class="container mt-2">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+    <!-- Navbar -->
+    <header>
+        <div class="logo">
+            <i class='bx bxs-dog'></i> Kunehouse
+        </div>
+
+
+        <div class="search-bar">
+            <input type="search" placeholder="Search">
+        </div>
+
+
+        <nav>
+            <ul class="navbar">
+                <li><a href="{{ url_for('enter') }}">Login</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#vouchers">Vouchers</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="header-icons">
+            <form action="{{ url_for('enter') }}">
+                <button class="icon-button" aria-label="Cart">
+                    <i class='bx bx-cart' id="cart-icon"></i>
+                </button>
+            </form>
+            <button class="icon-button" aria-label="User" onclick="toggleProfileMenu()">
+                <i class='bx bx-user' id="user-icon"></i>
+            </button>
+
+
+            <div id="profileMenu" class="profile-menu" style="display: none;">
+                <button class="menu-button" onclick="location.href='profile.html';">Profile</button>
+                <button class="menu-button" onclick="location.href='orders.html';">My Orders</button>
+                <button class="menu-button" onclick="location.href='logout.html';">Logout</button>
+                <a href="{{ url_for('enter') }}" class="menu-button sell-link">Become a Seller</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Products <br> Good for your Pets</h1>
+            <a href="{{ url_for('enter') }}" class="btn btn-primary">Order Now</a>
+        </div>
+        <div class="home-img">
+
+        </div>
+    </section>
+
+
+    <!-- Products Section -->
+    <section class="product" id="products">
+        <div class="heading">
+            <h1><span>Products</span></h1>
+        </div>
+        <div class="product-container">
+            <!-- Product Boxes -->
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/training_behavior.jpg') }}" alt="Training and Behavior" class="img-fluid">
+                <div class="content">
+                    <h2>Royal Canin Dog Collar</h2>
+                    <span>Php 1,200.00</span>
+                    <i class='bx bx-cart-alt' data-name="Royal Canin Dry Dog Food" data-price="1200" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/furniture.jpg') }}" class="img-fluid">
+                <div class="content">
+                    <h2>Pet Furniture</h2>
+                    <span>Php 1,500.00</span>
+                    <i class='bx bx-cart-alt' data-name="Pet Carrier Backpack" data-price="1500" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/clothing_accessory.jpg') }}" alt="Clothing and Accessories" class="img-fluid">
+                <div class="content">
+                    <h2>Dog Sweater</h2>
+                    <span>Php 850.00</span>
+                    <i class='bx bx-cart-alt' data-name="Dog Sweater" data-price="850" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/pet_essentials.jpg') }}" alt="Pet Essentials" class="img-fluid">
+                <div class="content">
+                    <h2>Fantastic Dog Food</h2>
+                    <span>Php 600.00</span>
+                    <i class='bx bx-cart-alt' data-name="Bunny Hay Feeder" data-price="600" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/toys.jpg') }}" alt="Toys" class="img-fluid">
+                <div class="content">
+                    <h2>Dog Toy</h2>
+                    <span>800.00</span>
+                    <i class='bx bx-cart-alt' data-name="Cat Litter Box" data-price="800" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/all.jpg') }}" alt="All" class="img-fluid">
+                <div class="content">
+                    <h2>Cat Water Fountain</h2>
+                    <span>Php 1,000.00</span>
+                    <i class='bx bx-cart-alt' data-name="Cat Bed" data-price="1000" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="product" id="products">
+        <div class="product-container">
+            <!-- Product Boxes -->
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/all.jpg') }}" alt="All"" class="img-fluid">
+                <div class="content">
+                    <h2>Cat Water Fountain</h2>
+                    <span>Php 350.00</span>
+                    <i class='bx bx-cart-alt' data-name="Dog Food Bowl" data-price="350" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/toys.jpg') }}" alt="Toys" class="img-fluid">
+                <div class="content">
+                    <h2>Dog Toy</h2>
+                    <span>Php 350.00</span>
+                    <i class='bx bx-cart-alt' data-name="Hamster Wheel" data-price="350" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/pet_essentials.jpg') }}" alt="Pet Essentials" class="img-fluid">
+                <div class="content">
+                    <h2>Dog Food</h2>
+                    <span>Php 500.00</span>
+                    <i class='bx bx-cart-alt' data-name="Timothy Hay for Rabbits" data-price="500" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/training_behavior.jpg') }}" alt="Training and Behavior" class="img-fluid">
+                <div class="content">
+                    <h2>Dog Collar</h2>
+                    <span>Php 1,800.00</span>
+                    <i class='bx bx-cart-alt' data-name="Dog Bed with Plush Cover" data-price="1800" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/clothing_accessory.jpg') }}" alt="Clothing and Accessories" class="img-fluid">
+                <div class="content">
+                    <h2>Cat Sweater</h2>
+                    <span>Php 900.00</span>
+                    <i class='bx bx-cart-alt' data-name="Cat Scratching Post" data-price="900" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/furniture.jpg') }}" class="img-fluid">
+                <div class="content">
+                    <h2>Pet Scratching Post</h2>
+                    <span>Php 1,200.00</span>
+                    <i class='bx bx-cart-alt' data-name="Purina Pro Plan Dog Food" data-price="1200" onclick="requireLogin()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Kunehouse. All Rights Reserved.</p>
+        <p><a href="mailto:support@kunehouse.com" class="text-white">Contact Support</a></p>
+    </footer>
+
+
+    <script>
+        // Toggle profile menu
+        function toggleProfileMenu() {
+            const profileMenu = document.getElementById("profileMenu");
+            profileMenu.style.display = profileMenu.style.display === "none" ? "block" : "none";
+        }
+
+
+        // Require login for restricted actions
+        function requireLogin() {
+            alert("You need to log in first to interact with products or add them to the cart.");
+            location.href = "{{ url_for('enter') }}";
+        }
+    </script>
+</body>
+</html>
+
+

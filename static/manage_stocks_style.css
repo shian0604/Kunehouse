@@ -1,0 +1,439 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root {
+    --base-clr:#103946;
+    --accent-clr: #d0c4a1;
+    --right-clr: #dfd7bb;
+    --left-clr: #eee7d3;
+
+
+    --text-clr: #292d31;
+    --gray-clr: #dae0ec;
+    --white-clr: #fff;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    grid-template-areas: 
+    "sidebar top-sidebar top-sidebar"
+    "sidebar main-content main-content";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px 1fr;
+
+    background: linear-gradient(to right, #fff, var(--right-clr));
+    overflow: hidden;
+    overflow-y: auto;
+
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--base-clr);
+    border-radius: 8px;
+}
+
+.top-sidebar{
+    grid-area: top-sidebar;
+    margin-top: 5px;
+
+    border-radius: 20px;
+    margin: 10px 280px 0 80px;
+
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr));
+    border: 10px solid white;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 44em;
+    overflow: hidden;
+    position: relative;
+}
+
+.right p {
+    word-spacing: 5px;
+}
+
+.banner{
+
+    grid-area: top-sidebar;
+
+
+    border-radius: 20px;
+    margin: 6em 280px 0 80px;
+    background-color: #fff;
+    border-radius: 20px;
+
+
+
+    padding: 8px;
+
+    box-sizing: border-box;
+
+ 
+    height: 12em;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.custom-hr {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); /* Gradient color */
+    margin: 20px 0;
+    border-radius: 20px;
+}
+
+.text-design {
+
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr));
+    background-size: 300%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s infinite;
+    font-size: 18px;
+
+}
+
+
+@keyframes gradient-shift {
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+
+
+
+
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 10px;
+
+    margin: 14em 0 10px 80px;
+
+    padding: 15px;
+    
+    box-sizing: border-box;
+
+    max-width: 44em;
+    min-height: 60vh;
+    max-height: auto;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stock-container button {
+    margin-top: 10px;
+    width: 20%;
+    height: 40px;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr));
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stock-container button:hover {
+    background: var(--accent-clr);
+    transform: scale(1.05);
+}
+
+.stock-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds spacing between rows */
+    width: 100%;
+}
+
+.stock-item {
+    display: flex;
+    align-items: center; /* Aligns items within a row */
+    justify-content: space-between;
+    gap: 15px;
+    border: 1px solid var(--accent-clr); /* Adds border for each stock item */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Inner padding for content */
+    background-color: #f9f9f9; /* Light background color */
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stock-item:hover {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+}
+
+/* Style for the product image */
+.product-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Style for product details */
+.product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;    
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Ensure no padding is added */
+    color: var(--base-clr);
+}
+
+.product-details p {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+.product-details h3 {
+    font-size: 14px;
+}
+
+
+.side-content {
+    grid-area: side-content;
+    margin: 14em 280px 10px 10px;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totals-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.totals-container a {
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+}
+
+/* Ensures the button is properly aligned inside the form */
+.totals-container form {
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Center the button inside the form */
+}
+
+.totals-container button {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content inside the button */
+    font-size: 16px; /* Add font size for better readability */
+
+    cursor: pointer;
+}
+
+.totals-container button:hover {
+    background: var(--accent-clr); /* Change background on hover */
+}
+
+
+.total-img {
+    padding: 10px;
+}
+
+.total-img svg {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    height: 60px;
+    width: 80px;
+    fill: white;
+    margin-right: 0;
+    transition: fill 0.3s ease;
+}
+
+.total-box {
+    width: 100%;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.total-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.total-info {
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.total-box h3 {
+    font-size: 12px;
+    margin: 0 0 5px;
+    text-align: justify;
+}
+
+.total-box p {
+    font-size: 12px;
+    margin: 0;
+    text-align: justify;
+}
+
+.total-text {
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.total-box:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+    background: var(--accent-clr); /* Change background on hover */
+    cursor: pointer;
+    
+
+}
+
+.total-box svg:hover {
+    fill: var(--left-clr);
+
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--start-x)) translateY(var(--start-y));
+        opacity: 1;
+    }
+}
+
+/* Custom sticker 1 */
+.custom {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out forwards;
+    --start-x: 3em;
+    --start-y: -10px;
+}
+
+/* Custom sticker 2 */
+.custom-2 {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out 0.3s forwards;
+    --start-x: 11em;
+    --start-y: -28px;
+}
+
+/* Custom sticker 3 */
+.custom-3 {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out 0.6s forwards;
+    --start-x: 8.5em;
+    --start-y: 2em;
+}
+
+
+
+/* Custom sticker 4 */
+.custom-4 {
+    position: fixed;
+    z-index: 1001;
+    font-size: 5em;
+    color: var(--accent-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: bold;
+    animation: slideIn 1s ease-out 0.9s forwards;
+    --start-x: 13em;
+    --start-y: 2em;
+}
+
+/* Custom sticker 5 */
+.custom-1 {
+    position: fixed;
+    z-index: 1001;
+    font-size: 4em;
+    color: var(--accent-clr);
+    -webkit-text-stroke: 2px white;
+    border-radius: 10px;
+    position: absolute;
+    animation: slideIn 1s ease-out 1.2s forwards;
+    --start-x: 4.5em;
+    --start-y: 60px;
+}
+
+
+

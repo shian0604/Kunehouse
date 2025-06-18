@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cherry+Bomb+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Modak&family=Mrs+Saint+Delafield&family=Pattaya&family=Poetsen+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Seller Products | Kunehouse</title>
+    <link rel="stylesheet" href="../static/seller_products_style.css">
+</head>
+<body>
+    {% include 'seller_sidebar.html' %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <h1 class="custom">☁︎</h1>
+    <h1 class="custom-1">✦</h1>
+    <h1 class="custom-2">☁︎</h1>
+    <h1 class="custom-3">☁︎</h1>
+    <h1 class="custom-4">///</h1>
+
+    <div class="top-sidebar">
+        <div class="left">
+            <h1>Your Products</h1>
+        </div>
+        <div class="right">
+            <p>╰ ₊  ✧  ﾟ ⚬  𓂂  ➢</p>
+        </div>
+    </div>
+
+    <div class="banner">
+
+        {% if seller and seller.Banner %}
+            <img src="{{ url_for('static', filename='banners/' + seller.Banner) }}" alt="Seller Banner" class="banner-image">
+        {% else %}
+            <img src="{{ url_for('static', filename='banners/default_banner.jpg') }}" alt="Default Banner" class="banner-image">
+        {% endif %}
+
+    </div>
+
+    <div class="main-content">
+        <h1 class="text-design">𖤣 . 𖥧 . 𖡼 . ⚘ . 𖤣 . 𖥧 . 𖡼 . ⚘ </h1>
+        <hr class="custom-hr">
+        
+        {% if products %}
+            {% for product in products %}
+            <div class="product-item">
+                <!-- Checkbox for selecting the product -->
+                <input type="checkbox" name="select_product" value="{{ product.ProductID }}" class="product-checkbox">
+        
+                <!-- Product Image -->
+                {% if product.ProductImg %}
+                    <img src="{{ url_for('static', filename=product.ProductImg[7:]) }}" alt="Product Image" class="product-image">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/default-product.png') }}" alt="Default Product Image" class="product-image">
+                {% endif %}
+        
+                <!-- Product Details -->
+                <div class="prod-name">
+                    <h3>{{ product.ProductName }}</h3> <!-- ProductName -->
+                </div>
+        
+                <div class="prod-info">
+                    <p><strong>Price:</strong> ₱{{ product.ProductPrice }}</p> <!-- ProductPrice -->
+                    <p><strong>Category:</strong> {{ product.ProductCategory }}</p> <!-- ProductCategory -->
+                    <p><strong>SubCategory:</strong> {{ product.ProductSubCategory }}</p> <!-- ProductSubCategory -->
+                    <p><strong>Sizes:</strong> {{ product.ProductSize }}</p> <!-- ProductSize -->
+                    <p><strong>Stocks:</strong> {{ product.ProductQuantity }}</p> <!-- ProductQuantity -->
+                </div>
+    
+                <!-- Archive/Unarchive Button -->
+                <form method="POST" action="{{ url_for('archive_product', product_id=product.ProductID) }}">
+                    {% if product.IsActive %}
+                        <button type="submit" class="archive-button">Archive</button>
+                    {% else %}
+                        <button type="submit" class="unarchive-button">Unarchive</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    </div>
+    
+    <div class="side-content">
+        <div class="totals-container">
+
+            <form action="/manage_stocks" method="GET">
+               <div class="total-box">
+                    <button>
+                        <div class="total-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                <path d="M200-120q-50 0-85-35t-35-85q0-50 35-85t85-35h560q50 0 85 35t35 85q0 50-35 85t-85 35H200Zm0-80h560q17 0 28.5-11.5T800-240q0-17-11.5-28.5T760-280H200q-17 0-28.5 11.5T160-240q0 17 11.5 28.5T200-200Zm200-240q-17 0-28.5-11.5T360-480v-320q0-17 11.5-28.5T400-840h320q17 0 28.5 11.5T760-800v320q0 17-11.5 28.5T720-440H400Zm40-80h240v-240H440v240Zm-360-2v-77h197v77H80Zm400-118h160v-79H480v79Zm-320 0h117v-79H160v79Zm280 120v-240 240Z"/>
+                            </svg>
+                        </div>
+                        <div class="total-info">
+                            <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                            <h3>Manage Stocks</h3>
+                        </div>
+                    </button>
+               </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="s-content">
+        
+        <div class="menu-content">
+            <h3>Menu</h3>
+
+            <div class="select-all-container">
+                <input type="checkbox" name="select_all" id="select_all" class="select-all-checkbox">
+                <label for="select_all">Select All</label>
+            </div>
+
+            <div class="button-container">
+                <form>
+                    <button type="button" class="menu-button" onclick="editProduct()">Edit</button>
+                </form>
+                <form id="delete-form">
+                    <button type="button" class="menu-button" id="delete-button">Delete</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+          const flashMessages = document.querySelectorAll('.flash-message');
+          flashMessages.forEach((message) => {
+            message.style.display = 'none';
+          });
+        }, 3000);
+    </script>
+
+    
+    <script src="../static/seller_products_script.js"></script>
+</body>
+</html>

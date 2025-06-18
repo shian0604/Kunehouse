@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard</title>
+    <link rel="stylesheet" href="../static/admin_manageusers_style.css">
+<body>
+    {% include 'admin_sidebar.html' %}
+
+    <div class="top-sidebar">
+        <h1>Manage Users</h1>
+    </div>
+
+    <div class="main-top">
+        <div class="totals-container">
+            <div class="total-box">
+                <h3>Total Users</h3>
+                <p></p>
+            </div>
+            <div class="total-box">
+                <h3>Total Buyers</h3>
+                <p></p>
+            </div>
+            <div class="total-box">
+                <h3>Total Sellers</h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Manage Users</h1>
+            <div>
+                <button id="toggle-btn" onclick="toggleTable()">Show Sellers</button>
+            </div>
+    
+            <form action="{{ url_for('discard_user') }}" method="POST">
+                <button>Discard</button>
+                <input type="hidden" id="user-type" name="user_type" value="buyer">
+            
+                <div id="table-container">
+                    <!-- Buyers Table -->
+                    <table id="buyers-table" class="user-table" style="display: block;">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all-buyers"></th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for buyer in buyers %}
+                            <tr>
+                                <td><input type="checkbox" class="buyer-checkbox" name="selected_ids" value="{{ buyer.BuyerID }}"></td>
+                                <td>{{ buyer.BuyerName }}</td>
+                                <td>{{ buyer.BuyerEmailAddress }}</td>
+                                <td>{{ buyer.BuyerContact }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            
+                    <!-- Sellers Table -->
+                    <table id="sellers-table" class="user-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all-sellers"></th>
+                                <th>StoreName</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for seller in sellers %}
+                            <tr>
+                                <td><input type="checkbox" class="seller-checkbox" name="selected_ids" value="{{ seller.SellerID }}"></td>
+                                <td>{{ seller.StoreName }}</td>
+                                <td>{{ seller.SellerEmail }}</td>
+                                <td>{{ seller.SellerContact }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            
+            </form>
+        </div>
+        
+    </div>
+
+    <div class="side-content">
+
+    </div>
+
+    <script src="{{ url_for('static', filename='super_admin_script.js') }}"></script>
+</body>
+</html>

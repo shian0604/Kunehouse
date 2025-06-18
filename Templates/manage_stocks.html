@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cherry+Bomb+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Modak&family=Mrs+Saint+Delafield&family=Pattaya&family=Poetsen+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Manage Stocks | Kunehouse</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../static/manage_stocks_style.css">
+</head>
+<body>
+    {% include 'seller_sidebar.html' %}
+
+    <h1 class="custom">☁︎</h1>
+    <h1 class="custom-1">✦</h1>
+    <h1 class="custom-2">☁︎</h1>
+    <h1 class="custom-3">☁︎</h1>
+    <h1 class="custom-4">///</h1>
+
+    <div class="top-sidebar">
+        <div class="left">
+            <h1>Seller Dashboard</h1>
+        </div>
+        <div class="right">
+            <p>╰ ₊  ✧  ﾟ ⚬  𓂂  ➢</p>
+        </div>
+    </div>
+
+    <div class="banner">
+
+        {% if seller and seller.Banner %}
+            <img src="{{ url_for('static', filename='banners/' + seller.Banner) }}" alt="Seller Banner" class="banner-image">
+        {% else %}
+            <img src="{{ url_for('static', filename='banners/default_banner.jpg') }}" alt="Default Banner" class="banner-image">
+        {% endif %}
+
+    </div>
+
+
+    <div class="main-content">
+        <h1 class="text-design">𖤣 . 𖥧 . 𖡼 . ⚘ . 𖤣 . 𖥧 . 𖡼 . ⚘ </h1>
+        <hr class="custom-hr">
+
+        <div class="stock-container">
+            {% for product in products %}
+            <div class="stock-item">
+                <img src="{{ product['ProductImg'] }}" alt="{{ product['ProductName'] }}" class="product-img">
+                <div class="product-details">
+                    <h3>{{ product['ProductName'] }}</h3>
+                    <p><strong>Current Stock :</strong> <span id="quantity-{{ product['ProductID'] }}">{{ product['ProductQuantity'] }}</span></p>
+                    <p><strong>Stock Status :</strong> {{ 'Available' if product['ProductQuantity'] > 0 else 'No stocks' }}</p>
+                </div>
+                
+                <button onclick="updateStock('{{ product['ProductID'] }}', 'decrement')">-</button>
+                <button onclick="updateStock('{{ product['ProductID'] }}', 'increment')">+</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+    <div class="side-content">
+        <div class="totals-container">
+
+           <a href="{{ url_for('seller_products') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Total Products :</h3>
+                        <p>{{ total_products }}</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script src="../static/manage_stocks_script.js"></script>
+
+</body>
+</html>

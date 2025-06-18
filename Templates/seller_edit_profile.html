@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Edit Profile | Kunehouse</title>
+    <link rel="stylesheet" href="../static/seller_edit_style.css">
+</head>
+
+<body>
+    <div class="top">
+        <div class="back-button">
+            <form action="seller_profile">
+                <button type="submit" class="back-button-style">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                        <path d="M640-200 200-480l440-280v560Zm-80-280Zm0 134v-268L350-480l210 134Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="add" id="add">
+        <div class="form-container">
+            <form method="POST" action="{{ url_for('update_seller_profile') }}" enctype="multipart/form-data">
+                <h1>Edit Profile</h1>
+                <span class="form-description">Kunehouse</span>
+
+                {% if seller.SellerPicture %}
+                    <img src="{{ url_for('static', filename='profile/' + seller.SellerPicture) }}" alt="Current Profile Picture">
+                {% else %}
+                    <img src="{{ url_for('static', filename='icons/default_profile.jpg') }}" alt="Default Profile Picture">
+                {% endif %}
+
+                <label for="store_name">Store Name:</label>
+                <input type="text" id="store_name" name="store_name" value="{{ seller.StoreName }}" required><br><br>
+
+                <label for="seller_contact">Contact:</label>
+                <input type="text" id="seller_contact" name="seller_contact" value="{{ seller.SellerContact }}" placeholder="09XX-XXX-XXXX" required 
+                pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}"><br><br>
+
+                <div class="email-field">
+                    <label for="seller_email">Email:</label>
+                    <input type="email" id="seller_email" name="seller_email" value="{{ seller.SellerEmail }}" required>
+                </div>
+
+                <label for="profile_picture" class="custom-file-upload">
+                    <span>Choose Product Image</span>
+                </label>
+                <input type="file" id="profile_picture" name="profile_picture"><br><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

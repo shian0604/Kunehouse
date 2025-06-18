@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr: #aca644;
+    --peach-clr: #f4d2af;
+    --orange-clr: #e47645;
+    --secondary-clr: #efa05d;
+    --accent-clr: #EF5A6F;
+    --hover-clr: #d88c98;
+    --border-clr: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--base-clr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text-clr);
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--text-clr);
+    border-radius: 8px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-clr);
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th {
+    background-color: var(--accent-clr);
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid var(--border-clr);
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: var(--hover-clr);
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-clr);
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--text-clr);
+}
+
+input:focus {
+    outline: 2px solid var(--accent-clr);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    background-color: var(--accent-clr);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--hover-clr);
+}
+
+.cancel-btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #aaa;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #888;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+

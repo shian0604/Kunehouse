@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cherry+Bomb+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Modak&family=Mrs+Saint+Delafield&family=Pattaya&family=Poetsen+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Kunehouse | Order Management</title>
+    <link rel="stylesheet" href="../static/seller_orders_styles.css">
+</head>
+
+<body>
+    {% include 'seller_sidebar.html' %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <h1 class="custom">☁︎</h1>
+    <h1 class="custom-1">✦</h1>
+    <h1 class="custom-2">☁︎</h1>
+    <h1 class="custom-3">☁︎</h1>
+    <h1 class="custom-4">///</h1>
+
+
+    
+    <div class="top-sidebar">
+        <div class="left">
+            <h1>Manage Orders</h1>
+        </div>
+        <div class="right">
+            <p>╰ ₊  ✧  ﾟ ⚬  𓂂  ➢</p>
+        </div>
+    </div>
+
+    <div class="banner">
+
+        {% if seller and seller.Banner %}
+            <img src="{{ url_for('static', filename='banners/' + seller.Banner) }}" alt="Seller Banner" class="banner-image">
+        {% else %}
+            <img src="{{ url_for('static', filename='banners/default_banner.jpg') }}" alt="Default Banner" class="banner-image">
+        {% endif %}
+
+    </div>
+    
+
+    <div class="main-content">
+        {% block content %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Amount</th>
+                        <th>Order Status</th>
+                        <th>Buyer</th>
+                        <th>Order Date</th>
+                        <th>Shipping Address</th>
+                        <th>Payment Method</th>
+                        <th>Archive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td><img src="{{ url_for('static', filename=order.ProductImg[7:]) }}" alt="Product Image"></td>
+                            <td>{{ order.ProductName }}</td>
+                            <td>{{ order.ProductPrice }}</td>
+                            <td>{{ order.Quantity }}</td>
+                            <td>{{ order.TotalAmount }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('update_order_status', order_id=order.OrderID) }}">
+                                    <select name="order_status" onchange="this.form.submit()">
+                                        <option value="unpaid" {% if order.OrderStatus == 'unpaid' %}selected{% endif %}>Unpaid</option>
+                                        <option value="processing" {% if order.OrderStatus == 'processing' %}selected{% endif %}>Processing</option>
+                                        <option value="shipped" {% if order.OrderStatus == 'shipped' %}selected{% endif %}>Shipped</option>
+                                        <option value="delivered" 
+                                            {% if order.OrderStatus in ['delivered', 'review', 'archived'] %}selected{% endif %}>
+                                            Delivered
+                                        </option>
+                                    </select>
+                                </form>
+                            </td>
+                            <td>{{ order.BuyerName }}</td>
+                            <td>{{ order.OrderDate }}</td>
+                            <td>{{ order.FullAddress }}<br>Recipient: {{ order.Recipient }}</td>
+                            <td>{{ order.PaymentMethod }}</td>
+                            <td>
+                                <!-- Archive Button -->
+                                <form method="POST" action="{{ url_for('archive_order', order_id=order.OrderID) }}">
+                                    <button type="submit">Archive</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+        {% endblock %}
+    </div>
+
+    <div class="side-content">
+        <div class="totals-container">
+
+           <a href="{{ url_for('archived_orders') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Archived Orders</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+          const flashMessages = document.querySelectorAll('.flash-message');
+          flashMessages.forEach((message) => {
+            message.style.display = 'none';
+          });
+        }, 3000);
+    </script>
+
+
+</body>
+</html>

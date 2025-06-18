@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Admins</title>
+    <link rel="stylesheet" href="../static/edit_admin_style.css"">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Admins</h1>
+
+        <form action="{{ url_for('edit_admin') }}" method="POST">
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email Address</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for admin in admins %}
+                        <tr>
+                            <input type="hidden" name="admin_id" value="{{ admin.AdminID }}">
+                            <td><input type="text" name="username" value="{{ admin.AdminName }}" required></td>
+                            <td><input type="email" name="email" value="{{ admin.AdminEmail }}" required></td>
+                            <td><input type="tel" name="contact" value="{{ admin.AdminContact }}" required></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <button type="submit">Save Changes</button>
+                <a href="{{ url_for('admin_dashboard') }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+:root {
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr: #aca644;
+    --peach-clr: #f4d2af;
+    --orange-clr: #e47645;
+    --secondary-clr: #efa05d;
+    --lavender: #bbb7e5;
+    --snow: #dae9fa;
+    --rose: #f7dfdf;
+    --pistachio: #b6c687;
+    --babypink: #efbdbd;
+    --paleyellow: #f3edbd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #faf0ca;
+    background: linear-gradient(to right, #faf0ca, #f5e7c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+
+    opacity: 0; /* Start with invisible body */
+    animation: bounceInPage 0.5s ease-out 1 forwards;
+}
+@keyframes bounceInPage {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+ 
+    100% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+   
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+.back-button {
+    position: absolute; /* Positioning the button */
+    top: 20px; /* Distance from the top of the form */
+    left: 20px; /* Distance from the left of the form */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: -70px;
+}
+
+.back-button-style {
+    background-color: #e47645; /* Background color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items */
+    align-items: center; /* Center items vertically */
+}
+
+.back-button-style svg {
+    fill: #FFFFFF; /* Icon color */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+/* Optional: Change background color on hover */
+.back-button-style:hover {
+    background-color: #efa05d; /* Darker shade on hover */
+}
+
+.form-description {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #e47645;
+    font-size: 16px;
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+}
+.container {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+    overflow: hidden;
+
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    padding: 20px;
+    display: flex; /* Enable flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    position: relative;
+}
+
+.container form {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container h1 {
+    color: #333;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 12px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #cccccc;
+    outline: none;
+}
+
+/* Submit button */
+.btn-submit {
+    background-color: var(--orange-clr);
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--secondary-clr);
+}
+
+/* My Address Button */
+.btn-address {
+    background-color: #e47645;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-address:hover {
+    background-color: #efa05d;
+}

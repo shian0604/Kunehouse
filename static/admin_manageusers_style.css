@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root { 
+    --base-clr: #991930;
+    --light-clr: #be3557;
+    --accent-clr: #831122;
+    --text-clr: #292d31;
+    --gray-clr: #dae0ec;
+    --white-clr: #f0f2f7;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-areas: 
+        "sidebar top-sidebar top-sidebar"
+        "sidebar main-content side-content";
+    grid-template-columns: 250px 1fr 500px;
+    grid-template-rows: 80px 1fr;
+    background: linear-gradient(to right, #fff0dd, #f4d2af);
+    overflow: hidden;
+    overflow-y: auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--white-clr);
+    border-radius: 8px;
+}
+body::-webkit-scrollbar-thumb {
+    background: var(--base-clr);
+    border-radius: 8px;
+}
+
+.top-sidebar {
+    grid-area: top-sidebar;
+    margin: 10px 280px 0 80px;
+    border-radius: 20px;
+    background-color: #fff;
+    color: var(--text-clr);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-top {
+    grid-area: top-sidebar;
+    margin-top: 5em;
+    border-radius: 20px;
+    margin: 5em 280px 0 80px;
+    color: white;
+    padding: 20px;
+    height: 8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.totals-container {
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+    gap: 15px;
+}
+
+.total-box {
+    flex: 1;
+    max-width: 250px;
+    background: linear-gradient(to right, var(--base-clr), var(--text-clr));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.total-box:hover {
+    transform: scale(1.05);
+    background-color: #be3557;
+}
+
+.main-content::-webkit-scrollbar {
+    width: 10px;
+    height: 10PX;
+}
+.main-content::-webkit-scrollbar-track {
+    background: var(--white-clr);
+    border-radius: 8px;
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: var(--base-clr);
+    border-radius: 8px;
+}
+
+/* Main Content Styling */
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 11em 0 10px 80px;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 800px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Table Container Styling */
+#table-container {
+    max-height: calc(80vh - 100px); /* Adjustable max-height relative to the content */
+    overflow-y: auto; /* Add vertical scrolling within the table container */
+    overflow-x: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Table Styling */
+.user-table {
+    width: 100%; /* Ensure the table stretches to fit the container */
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.user-table th {
+    background-color: var(--base-clr); /* Dark green for header */
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    position: sticky; /* Keep header visible during vertical scrolling */
+    top: 0;
+    z-index: 1;
+}
+
+.user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.user-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Checkbox Alignment */
+.user-table input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* Toggle Button */
+#toggle-btn {
+    background-color: var(--base-clr);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#toggle-btn:hover {
+    background-color: var(--light-clr);
+}
+
+/* Discard Button */
+form button {
+    background-color: var(--base-clr); /* Red discard button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--light-clr);
+}
+
+.sidebar {
+    grid-area: sidebar;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar button:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--base-clr);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--light-clr);
+    transform: scale(1.05);
+}
+
+#toggle-btn {
+    background-color: var(--base-clr);
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#toggle-btn:hover {
+    background-color: var(--light-clr);
+}
+
+form button {
+    background-color: var(--accent-clr);
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: var(--light-clr);
+}
+
+#table-container {
+    position: relative; 
+}
+
+#discard-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+#discard-btn {
+    background-color: var(--accent-clr);
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+#discard-btn:hover {
+    background-color: var(--light-clr);
+}

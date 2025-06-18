@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr:#aca644;
+    --peach-clr:#f4d2af;
+    --orange-clr:#e47645;
+    --secondary-clr: #efa05d;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    grid-template-areas: 
+    "sidebar top-sidebar top-sidebar"
+    "sidebar main-content main-content";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px 1fr;
+
+    background-color: #fff0dd;
+    background: linear-gradient(to right, #fff0dd, #f4d2af);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+
+.top-content{
+    grid-area: top-sidebar;
+    margin-top: 5px;
+
+    border-radius: 20px;
+    margin: 10px 280px 0 80px;
+
+    background-color: #fff;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+
+    width: 44.1em;
+    height: 11.5em;
+}
+
+.edit-profile {
+    position: absolute; /* Position the button absolutely within the .top-content container */
+    top: 0; /* Align to the top */
+    right: 0; /* Align to the right */
+    margin: 10px; /* Optional: Adds spacing from the top-right corner */
+    
+}
+
+.edit-profile-button {
+    background-color: #e47645; /* Green background */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+}
+
+.edit-profile-button:hover {
+    background-color: #efa05d; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+
+
+.profile-side {
+    color: #555;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+
+
+.profile-buttons form {
+    width: 100%;
+    gap: 10px;
+}
+
+.profile-buttons button {
+    border: none;
+    outline: none;
+    background-color: #e47645;
+    color: #fff0dd;
+    font-size: 15px;
+    font-weight: 500;
+    
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: left;
+
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-buttons svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    transition: margin 0.3s ease;
+}
+
+.profile-buttons button:hover {
+    background-color: #efa05d; /* Darker background */
+    color: #fff; /* Lighter text color */
+
+}
+
+/* Optional: Hover effect on SVG icon */
+.profile-buttons button:hover svg {
+    margin-right: 15px; /* Add a little extra margin to create an animation */
+}
+
+.profile-icon {
+    position: relative;
+    width: 12.5em;
+    height: 12.5em;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-icon form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.profile-icon input[type="file"] {
+    display: none;
+}
+
+.profile-icon label {
+    cursor: pointer;
+    background-color: var(--orange-clr);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.profile-icon button {
+    margin-top: 5px;
+    background-color: var(--secondary-clr);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 10.5em 0 0 80px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 46.5em;
+    min-height: 40em;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Icons (optional, for additional buttons) */
+.main-title .icons i {
+    font-size: 1.2em;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Order Navigation */
+.order-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Order Links */
+.order-navigation .order-link {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+/* Active Order Link */
+.order-navigation .order-link.active {
+    color: black;
+}
+
+/* Underline for active link */
+.order-navigation::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background-color: black;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+/* Shift underline based on active link */
+.order-navigation .order-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: black;
+}
+
+.order-navigation .order-link.active::after {
+    left: 0;
+    right: 0;
+}
+
+/* Add an animated underline for smoother transitions */
+.order-navigation::after {
+    left: 0;
+    width: 0;
+    transform: translateX(0);
+}
+
+/* Orders Section */
+#orders-section {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #555;
+}
+
+
+.order-navigation {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.order-link {
+    text-decoration: none;
+    color: #e47645;
+    font-weight: 500;
+}
+
+.order-link.active {
+    font-weight: 700;
+    color: #d15a35;
+}
+
+#orders-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-item {
+    display: flex; /* Align items in a row */
+    flex-direction: row; /* Ensure row layout */
+    justify-content: space-between; /* Space between right and left sections */
+    align-items: center; /* Align items vertically */
+    border: 1px solid #ddd; /* Optional: Add border */
+    border-radius: 8px; /* Optional: Rounded corners */
+    margin: 10px 0; /* Add spacing between items */
+    padding: 15px; /* Add padding inside the container */
+    background-color: #f9f9f9; /* Background for order item */
+}
+
+.order-right {
+    flex: 1; /* Take up one part of the row */
+    text-align: center; /* Center content in this section */
+    margin-right: 15px; /* Add spacing between sections */
+}
+
+.order-right img {
+    max-width: 150px; /* Limit image size */
+    max-height: 150px; /* Ensure consistent size */
+    object-fit: contain; /* Ensure image retains aspect ratio */
+    border: 1px solid #ddd; /* Optional: Border around the image */
+    border-radius: 8px; /* Optional: Rounded image corners */
+}
+
+.order-left {
+    flex: 2; /* Take up more space for the text section */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack text vertically */
+    gap: 10px; /* Add spacing between text lines */
+}
+
+.order-left p {
+    margin: 0; /* Remove default margin */
+    font-size: 14px; /* Adjust font size */
+    color: #333; /* Text color */
+}
+
+.order-left p strong {
+    font-weight: bold; /* Make labels bold */
+}
+
+
+button {
+    padding: 8px 15px;
+    background-color: #e47645;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d15a35;
+}
+
+/* Adjusting the button width and spacing */
+button + button {
+    margin-left: 10px;
+}

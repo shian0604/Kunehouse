@@ -1,0 +1,43 @@
+
+
+
+.flash-message {
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeout 3s ease forwards;
+}
+
+/* Success flash message styling */
+.flash-message.success {
+    background-color: #4caf50; /* Green */
+}
+
+/* Error flash message styling */
+.flash-message.error {
+    background-color: #f44336; /* Red */
+}
+
+/* Warning flash message styling */
+.flash-message.warning {
+    background-color: #ff9800; /* Orange */
+}
+
+/* Fadeout animation */
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}

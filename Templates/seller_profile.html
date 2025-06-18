@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cherry+Bomb+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Modak&family=Mrs+Saint+Delafield&family=Pattaya&family=Poetsen+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    
+    <title>Profile | Kunehouse</title>
+    <link rel="stylesheet" href="../static/seller_profile_style.css">
+</head>
+
+<body>
+    {% include 'seller_sidebar.html' %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <h1 class="custom">☁︎</h1>
+    <h1 class="custom-1">✦</h1>
+    <h1 class="custom-2">☁︎</h1>
+    <h1 class="custom-3">☁︎</h1>
+    <h1 class="custom-4">///</h1>
+
+    <div class="top-sidebar">
+        <div class="left">
+            <h1>Seller Profile</h1>
+        </div>
+        <div class="right">
+            <p>╰ ₊  ✧  ﾟ ⚬  𓂂  ➢</p>
+        </div>
+    </div>
+    <div class="banner">
+
+        {% if seller.Banner %}
+            <img src="{{ url_for('static', filename='banners/' + seller.Banner) }}" alt="Seller Banner" class="banner-image">
+        {% else %}
+            <img src="{{ url_for('static', filename='banners/default_banner.jpg') }}" alt="Default Banner" class="banner-image">
+        {% endif %}
+
+        <form action="{{ url_for('banner_upload') }}" method="post" enctype="multipart/form-data" class="banner-form">
+            <input type="file" name="banner" id="banner" class="banner-input" onchange="this.form.submit()">
+            <label for="banner" class="banner-label">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
+                </svg>
+            </label>
+        </form>
+    </div>
+    
+
+    <div class="main-content">
+        <div class="profile-container">
+            <div class="profile-left">
+                {% if seller.SellerPicture %}
+                    <img src="{{ url_for('static', filename='profile/' + seller.SellerPicture) }}" alt="Seller Picture">
+                {% else %}
+                    <img src="{{ url_for('static', filename='icons/default_profile.jpg') }}" alt="Default Profile Picture">
+                {% endif %}
+
+                <div class="small-box-container">
+                    <div class="small-box box1"></div>
+                    <div class="small-box box2"></div>
+                    <div class="small-box box3"></div>
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <h1 class="text-design">𖤣 . 𖥧 . 𖡼 . ⚘ . 𖤣 . 𖥧 . 𖡼 . ⚘ </h1>
+
+                <p><strong>Store Name :</strong></p>
+                <p>{{ seller.StoreName }}</p>
+                <p><strong>Email :</strong></p>
+                <p>{{ seller.SellerEmail }}</p>
+                <p><strong>Contact :</strong></p>
+                <p>{{ seller.SellerContact }}</p>
+                <p><strong>Socials :</strong> :</p>
+
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook"></i> <!-- Font Awesome Facebook Icon -->
+                    </a>
+                    <a href="#" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i> <!-- Font Awesome Instagram Icon -->
+                    </a>
+                    <a href="#" target="_blank" class="social-icon">
+                        <i class="fab fa-twitter"></i> <!-- Font Awesome X (formerly Twitter) Icon -->
+                    </a>
+                    <a href="#" target="_blank" class="social-icon">
+                        <i class="fab fa-youtube"></i> <!-- Font Awesome YouTube Icon -->
+                    </a>
+                </div>
+
+                <hr class="custom-hr">
+            </div>
+
+            <div class="edit-side">
+                <form action="seller_edit_profile" method="get">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-content">
+        <div class="totals-container">
+           <a href="{{ url_for('sales') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Revenue :</h3>
+                        <p>₱{{ total_revenue }}</p>
+                    </div>
+                </div>
+           </a>
+
+           <a href="{{ url_for('seller_products') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Total Products :</h3>
+                        <p>{{ total_products }}</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{{ url_for('orders')}}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M160-160v-516L82-846l72-34 94 202h464l94-202 72 34-78 170v516H160Zm240-280h160q17 0 28.5-11.5T600-480q0-17-11.5-28.5T560-520H400q-17 0-28.5 11.5T360-480q0 17 11.5 28.5T400-440ZM240-240h480v-358H240v358Zm0 0v-358 358Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Total Orders :</h3>
+                        <p>{{ total_orders }}</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+          const flashMessages = document.querySelectorAll('.flash-message');
+          flashMessages.forEach((message) => {
+            message.style.display = 'none';
+          });
+        }, 3000);
+    </script>
+
+</body>
+</html>

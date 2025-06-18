@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr:#aca644;
+    --peach-clr:#f4d2af;
+    --orange-clr:#e47645;
+    --secondary-clr: #efa05d;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #aca644;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.container span{
+    font-size:15px;
+    text-align: center;
+}
+.container h1{
+    margin-top: 15px;
+    text-align: center;
+}
+.container h2{
+    font-size: 10px;
+}
+
+.container a{
+    color: black;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #aca644;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    width: auto; /* Set width to auto for button */
+    max-width: 200px; /* Optional: limit max width */
+    align-self: center; /* Center button within form */
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.container button:hover {
+    background-color: #c8cf67; /* Change on hover */
+}
+
+.back-button {
+    position: absolute; /* Positioning the button */
+    top: 20px; /* Distance from the top of the form */
+    left: 20px; /* Distance from the left of the form */
+    z-index: 10; /* Ensure it appears above other elements */
+    width: -70px;
+}
+
+.back-button-style {
+    background-color: #aca644; /* Background color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items */
+    align-items: center; /* Center items vertically */
+}
+
+.back-button-style svg {
+    fill: #FFFFFF; /* Icon color */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+}
+
+/* Optional: Change background color on hover */
+.back-button-style:hover {
+    background-color: #dacb76; /* Darker shade on hover */
+}

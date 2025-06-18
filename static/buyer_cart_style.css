@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --base-clr: #fff0dd;
+    --text-clr: #772929;
+    --green-clr:#aca644;
+    --peach-clr:#f4d2af;
+    --orange-clr:#e47645;
+    --secondary-clr: #efa05d;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-areas: 
+        "sidebar top-sidebar top-sidebar"
+        "sidebar main-content side-content";
+    grid-template-columns: 250px 1fr 500px;
+    grid-template-rows: 80px 1fr;
+
+    background-color: #fff0dd;
+    background: linear-gradient(to right, #fff0dd, #f4d2af);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background:#e47645;
+    border-radius: 8px;
+}
+
+/* Sidebar Styles */
+
+
+.register span{
+    color: #fff0dd;
+    text-decoration: none;
+    padding-left: 10px;
+    flex-grow: 1;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    background-color: transparent; /* Transparent by default */
+    font-weight: 500; /* A bit bolder text */
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.register-form {
+    display: flex; /* Use flexbox for proper alignment */
+    justify-content: center; /* Center the button in the list item */
+    margin-top: 0; /* Optional: Space from previous elements */
+    width: 100%; /* Ensure it takes the full width of the parent */
+
+}
+
+/* Style for the SVG inside the register button */
+.register-button svg {
+    margin-right: 10px; /* Space between SVG and text */
+    fill: #fff; /* Color of the SVG */
+    width: 20px; /* Adjust width of the SVG */
+    height: 20px; /* Adjust height of the SVG */
+}
+
+/* Add hover effect for the register button */
+.register-button:hover {
+    background-color: #efa05d; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.top-sidebar{
+    grid-area: top-sidebar;
+    margin-top: 5px;
+
+    border-radius: 20px;
+    margin: 10px 280px 0 80px;
+
+    background-color: #fff;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.top-left {
+    display: flex; /* Keep the left section flexible */
+    margin-right: 320px;
+}
+
+.top-left h1 {
+    color: #333; /* Title color */
+    font-size: 28px;
+    font-family: "Pattaya", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.top-right-icons {
+    display: flex; /* Align icons horizontally */
+    gap: 0; /* Space between icons */
+}
+
+.icon-button {
+    background: transparent; /* No background for buttons */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    margin-right: 13px;
+    background-color: #e47645;
+    background: linear-gradient(to bottom, #efa05d, #e47645);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-button:hover{
+    background-color: #efa05d; /* Change background color on hover */
+    transform: scale(1.05);
+}
+
+.icon-button:hover svg {
+    fill: #f3b670; /* Change icon color on hover */
+    transition: fill 0.3s ease;
+}
+
+.icon-button svg {
+    transform: translateY(1px);
+    fill: white; /* Icon color */
+    width: 24px; /* Set a consistent size */
+    height: 24px; /* Set a consistent size */
+}
+
+.search-bar {
+    display: flex; /* Align input and icon horizontally */
+    align-items: center; /* Center icon and input */
+    background-color: #e9ecef; /* Light background for the search bar */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding inside the search bar */
+    width: 180px; /* Set a width for the search bar */
+}
+
+.search-bar svg {
+    fill: #666; /* Color of the search icon */
+    margin-right: 5px; /* Space between icon and input */
+}
+
+.search-bar input {
+    border: none; /* No border */
+    outline: none; /* No outline on focus */
+    background: transparent; /* Transparent background */
+    width: 100%; /* Full width */
+    padding: 5px; /* Padding inside the input */
+    color: #333; /* Text color */
+}
+
+.side-content {
+    grid-area: side-content;
+    border-radius: 20px;
+
+    margin: 49vh 280px 10px 10px;
+
+    background-color: #f5f5f5; /* Example background */
+    padding: 15px;
+    min-height: 75vh;
+    max-height: 10vh;
+}
+
+.side-total.products {
+    grid-area: side-content;
+    border-radius: 20px;
+    overflow: hidden;
+
+    margin: 10px 280px 10px 10px;
+    padding: 15px;
+    min-height: 50px;
+    max-height: 80px;
+
+
+
+    display: block;
+    background-color: #e47645;
+    background: linear-gradient(to right, #efa05d, #e47645);
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side-total.products svg {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+
+    height: 60px; /* Set height of the icon */
+    width: 80px; /* Set width of the icon */
+    fill: white; /* Icon color */
+    margin-right: 20px;
+}
+
+.total-products.info {
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    
+}
+
+.side-total.products h3 {
+    margin: 0;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.side-total.products p {
+    font-size: 18px;
+    margin: 0;
+    text-align: left;
+}
+
+
+.side-button {
+    grid-area: side-content;
+    border-radius: 20px;
+
+    margin: 130px 280px 10px 10px;
+
+    background-color: #f5f5f5; /* Example background */
+    padding: 15px;
+    height: 135px;
+
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.button-in {
+    border: 1px solid #ddd;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    padding: 10px;
+
+    display: flex;
+    
+    align-items: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.side-button h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Adjust font size */
+    color: #333; /* Darker text color */
+}
+
+.side-button form {
+    margin: 0; /* Remove default margin */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.side-button button {
+    background-color: #e47645; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Adjust font size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+
+    width: 100%;
+}
+
+.side-button button:hover {
+    background-color: #d26537; /* Darker shade on hover */
+}
+
+
+
+
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 20px;
+
+    margin: 10px 0 10px 80px;
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    max-width: 600px;
+    min-height: 80vh;
+    max-height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+    justify-content: space-between;
+    width: 80vh;
+    height: 20vh;
+}
+
+.cart-item img {
+    width: 80px;
+    height: auto;
+
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 8px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cart-checkbox {
+    appearance: none; /* Remove default checkbox styling */
+    width: 16px; /* Set size */
+    height: 16px; /* Set size equal to width to make it circular */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 50%; /* Make it circular */
+    outline: none; /* Remove focus outline */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover and checked states */
+    margin-right: 0; /* Add space between checkbox and image */
+}
+
+.cart-checkbox:checked {
+    background-color: #e47645; /* Background color when checked */
+    border-color: #e47645; /* Border color when checked */
+}
+
+.cart-checkbox:hover {
+    border-color: #555; /* Border color on hover */
+}
+
+
+
+
+/* Styles for the product name and price */
+.cart-item h3 {
+    font-size: 16px; /* Larger font size for product name */
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cart-item p {
+    font-size: 14px; /* Slightly smaller font for price */
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.quantity-selector {
+    margin-top: 13vh;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector button {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    background-color: #e47645;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.quantity-selector .quantity-input {
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.place-order-button, .discard-button {
+    background-color: #e47645;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.place-order-button:hover, .discard-button:hover {
+    background-color: #d55e37;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../static/admin_dashboard.css">
+</head>
+<body>
+    {% include 'admin_sidebar.html' %}
+
+    <div class="top-sidebar">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+    <div class="main-top">
+        <div class="totals-container">
+            <div class="total-box">
+                <h3>Total Admin</h3>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="total-box">
+                <h3>Total Buyers</h3>
+                <p>{{ total_buyers }}</p>
+            </div>
+            <div class="total-box">
+                <h3>Total Sellers</h3>
+                <p>{{ total_sellers }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="add-admin-btn-container">
+            <button id="add-admin-btn">Add New Admin</button>
+        </div>
+
+       
+        <div class="modal" id="add-admin-modal">
+            <div class="modal-content">
+                <button class="close-btn" id="close-modal">&times;</button>
+                <h2>Add New Admin</h2>
+                <form id="add-admin-form" action="{{ url_for('add_admin') }}" method="POST">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+
+                    <label for="contact">Contact Number:</label>
+                    <input type="text" id="contact" name="contact" placeholder="09XX-XXX-XXXX" required 
+                    pattern="09[0-9]{2}-[0-9]{3}-[0-9]{4}">
+
+                    <button type="submit">Add Admin</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Admin Table -->
+        <form action="{{ url_for('manage_admins') }}" method="POST">
+
+        
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all" /></th>
+                        <th>Username</th>
+                        <th>Email Address</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for admin in admins %}
+                        <tr>
+                            <td><input type="checkbox" name="selected_admins" value="{{ admin.AdminID }}"></td>
+                            <td>{{ admin.AdminName }}</td>
+                            <td>{{ admin.AdminEmail }}</td>
+                            <td>{{ admin.AdminContact }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        
+
+            <!-- Edit/Update and Delete Buttons -->
+            <div class="actions">
+                <button type="submit" name="action" value="edit">Edit/Update Selected</button>
+                <button type="submit" name="action" value="delete" onclick="return confirm('Are you sure you want to delete the selected admins?');">Delete Selected</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="side-content">
+
+    </div>
+
+    <script src="../static/admin_dashboard_script.js"></script>
+</body>
+</html>

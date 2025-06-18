@@ -1,0 +1,602 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root {
+    --base-clr:#103946;
+    --accent-clr: #d0c4a1;
+    --right-clr: #dfd7bb;
+    --left-clr: #eee7d3;
+
+
+    --text-clr: #292d31;
+    --gray-clr: #dae0ec;
+    --white-clr: #fff;
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+
+    grid-template-areas: 
+    "sidebar top-sidebar top-sidebar"
+    "sidebar main-content main-content";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px 1fr;
+
+    background: linear-gradient(to right, #fff, var(--right-clr));
+    overflow: hidden;
+    overflow-y: auto;
+
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--base-clr);
+    border-radius: 8px;
+}
+
+.top-sidebar{
+    grid-area: top-sidebar;
+    margin-top: 5px;
+
+    border-radius: 20px;
+    margin: 10px 280px 0 80px;
+
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr));
+    border: 10px solid white;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 44em;
+    overflow: hidden;
+    position: relative;
+}
+
+.right p {
+    word-spacing: 5px;
+}
+
+.banner{
+
+    grid-area: top-sidebar;
+
+
+    border-radius: 20px;
+    margin: 6em 280px 0 80px;
+    background-color: #fff;
+    border-radius: 20px;
+
+
+
+    padding: 8px;
+
+    box-sizing: border-box;
+
+ 
+    height: 12em;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.custom-hr {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); /* Gradient color */
+    margin: 20px 0;
+    border-radius: 20px;
+}
+
+.text-design {
+
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr));
+    background-size: 300%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s infinite;
+    font-size: 18px;
+
+}
+
+
+@keyframes gradient-shift {
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+
+
+
+
+
+
+
+.s-content {
+   grid-area: side-content;
+    border-radius: 20px;
+
+    margin: 14em 280px 10px 10px;
+
+    background-color: #f5f5f5; /* Example background */
+    padding: 20px;
+    height: 30vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-content {
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 15px; /* Space between elements */
+    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content at the top */
+    padding: 10px; /* Added padding inside the menu-content */
+}
+
+.menu-content h3 {
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 10px; /* Add some space below the heading */
+    padding: 5px 0; /* Optional padding for better alignment */
+    color: var(--base-clr);
+}
+
+.select-all-container {
+    display: flex;
+    align-items: center;
+
+}
+
+.select-all-container input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and label */
+}
+
+label {
+    color: var(--base-clr);
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px; /* Add spacing between button container and previous content */
+}
+
+.button-container button {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px; /* Increased button height for better visibility */
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); /* Button background */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.button-container button:hover {
+    background: var(--accent-clr); /* Change background color on hover */
+    transform: scale(1.05); /* Slight scaling on hover */
+}
+
+.main-content {
+    grid-area: main-content;
+    background-color: #fff;
+    border-radius: 10px;
+
+    margin: 14em 0 10px 80px;
+
+    padding: 15px;
+    
+    box-sizing: border-box;
+
+    max-width: 34em;
+    min-height: 60vh;
+    max-height: auto;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--accent-clr);
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%; /* Full width of .main-content */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+/* Checkbox styling */
+.product-item .product-checkbox {
+    margin-right: 15px; /* Space between checkbox and content */
+    transform: scale(1.2);
+}
+
+.product-checkbox {
+    appearance: none; /* Remove default checkbox styling */
+    width: 12px; /* Set size */
+    height: 12px; /* Set size */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 50%; /* Make it circular */
+    outline: none; /* Remove focus outline */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover and checked states */
+    margin-right: 10px; /* Add space between checkbox and image */
+}
+
+.product-item button {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content inside the button */
+    font-size: 16px; /* Add font size for better readability */
+    transition: background 0.3s ease;
+
+    cursor: pointer;
+    color: var(--white-clr);
+    font-size: 12px;
+}
+
+.product-item button:hover {
+    background: var(--accent-clr);
+}
+.product-checkbox:checked {
+    background-color: var(--base-clr); /* Background color when checked */
+    border-color: var(--base-clr); /* Border color when checked */
+}
+
+.product-checkbox:hover {
+    border-color: var(--accent-clr); /* Border color on hover */
+}
+
+
+/* Image styling */
+.product-item img {
+    width: 80px; /* Fixed width for image */
+    height: auto;
+    
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+
+.prod-name {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--base-clr);
+}
+
+.prod-name h3 {
+    font-size: 12px;
+    margin: 0;
+    color: var(--base-clr);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.prod-info {
+    margin-left: 15vh;
+    flex: 1;
+    font-size: 14px;
+    color: var(--base-clr);
+}
+
+.prod-info p {
+    margin: 3px 0;
+    font-size: 12px;
+}
+
+/* Hover effect */
+.product-item:hover {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.side-content {
+    grid-area: side-content;
+    margin: 29em 280px 10px 10px;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totals-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.totals-container a {
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+}
+
+/* Ensures the button is properly aligned inside the form */
+.totals-container form {
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Center the button inside the form */
+}
+
+.totals-container button {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content inside the button */
+    font-size: 16px; /* Add font size for better readability */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+
+    cursor: pointer;
+}
+
+.totals-container button:hover {
+    background: var(--accent-clr); /* Change background on hover */
+    transform: scale(1.05);
+}
+
+
+.total-img {
+    padding: 10px;
+}
+
+.total-img svg {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    height: 60px;
+    width: 80px;
+    fill: white;
+    margin-right: 0;
+    transition: fill 0.3s ease;
+}
+
+.total-box {
+    width: 100%;
+    background: linear-gradient(to right, var(--base-clr), var(--accent-clr)); 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.total-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.total-info {
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.total-box h3 {
+    font-size: 12px;
+    margin: 0 0 5px;
+    text-align: justify;
+}
+
+.total-box p {
+    font-size: 12px;
+    margin: 0;
+    text-align: justify;
+}
+
+.total-text {
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.total-box:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+    background: var(--accent-clr); /* Change background on hover */
+    cursor: pointer;
+    
+
+}
+
+.total-box svg:hover {
+    fill: var(--left-clr);
+
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(var(--start-x)) translateY(var(--start-y));
+        opacity: 1;
+    }
+}
+
+/* Custom sticker 1 */
+.custom {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out forwards;
+    --start-x: 3em;
+    --start-y: -10px;
+}
+
+/* Custom sticker 2 */
+.custom-2 {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out 0.3s forwards;
+    --start-x: 11em;
+    --start-y: -28px;
+}
+
+/* Custom sticker 3 */
+.custom-3 {
+    position: fixed;
+    z-index: 1000;
+    font-size: 6em;
+    color: var(--base-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    animation: slideIn 1s ease-out 0.6s forwards;
+    --start-x: 8.5em;
+    --start-y: 2em;
+}
+
+
+
+/* Custom sticker 4 */
+.custom-4 {
+    position: fixed;
+    z-index: 1001;
+    font-size: 5em;
+    color: var(--accent-clr);
+    -webkit-text-stroke: 5px white;
+    position: absolute;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: bold;
+    animation: slideIn 1s ease-out 0.9s forwards;
+    --start-x: 13em;
+    --start-y: 5em;
+}
+
+/* Custom sticker 5 */
+.custom-1 {
+    position: fixed;
+    z-index: 1001;
+    font-size: 4em;
+    color: var(--accent-clr);
+    -webkit-text-stroke: 2px white;
+    border-radius: 10px;
+    position: absolute;
+    animation: slideIn 1s ease-out 1.2s forwards;
+    --start-x: 4.5em;
+    --start-y: 60px;
+}
+
+.flash-message {
+
+    grid-area: top-sidebar;
+    margin-top: 5px;
+
+    border-radius: 30px;
+    
+    margin-left: 72em;
+
+
+    padding: 20px;
+    
+    
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeout 3s ease forwards;
+    z-index: 10004;
+    position: fixed;
+
+    width: auto;
+}
+
+/* Success flash message styling */
+.flash-message.success {
+    background-color: var(--base-clr); /* Green */
+}
+
+/* Error flash message styling */
+.flash-message.error {
+    background-color: #be3557; /* Red */
+}
+
+/* Warning flash message styling */
+.flash-message.warning {
+    background-color: var(--accent-clr); /* Orange */
+}
+
+/* Fadeout animation */
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+

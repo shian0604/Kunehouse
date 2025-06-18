@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/order_summary_style.css">
+    <title>Order Summary | Kunehouse</title>
+</head>
+<body>
+    <form action="{{ url_for('finalize_order') }}" method="POST">
+        <div class="container">
+            <h1>Order Summary</h1>
+            <span class="form-description">Kunehouse</span>
+
+
+        
+            {% if is_bulk_order %}
+            <!-- Multiple Items Display -->
+            <div class="bulk-order-summary">
+                {% for item in cart_items %}
+                    <div class="product-info">
+    
+                        <div class="left">
+                            <img src="{{ url_for('static', filename=item.ProductImg[7:]) }}" 
+                            alt="{{ item.ProductName }}">
+                        </div>
+    
+                        <div class="right">
+                            <h4>{{ item.ProductName }}</h4>
+                            <p>Product ID: {{ item.ProductID }}</p>
+                            <p>Color: {{ item.ProductColor }}</p>
+                            <p>Size: {{ item.ProductSize }}</p>
+                        </div>
+                        
+                        <!-- Display Quantity -->
+                        <p>Quantity: {{ item.ProductQuantity }}</p>
+                        <p>Price: ${{ item.ProductPrice }}</p>
+                        <p>Subtotal: ${{ item.ProductPrice * item.ProductQuantity }}</p>
+                        
+                        <!-- Hidden fields for each product (if needed for later use) -->
+                        <input type="hidden" name="products[{{ item.ProductID }}][product_id]" value="{{ item.ProductID }}">
+                        <input type="hidden" name="products[{{ item.ProductID }}][product_color]" value="{{ item.ProductColor }}">
+                        <input type="hidden" name="products[{{ item.ProductID }}][product_size]" value="{{ item.ProductSize }}">
+                        <input type="hidden" name="products[{{ item.ProductID }}][product_price]" value="{{ item.ProductPrice }}">
+                        <input type="hidden" name="products[{{ item.ProductID }}][product_quantity]" value="{{ item.ProductQuantity }}">
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+            <p><strong>Total Price: ${{ total_price }}</strong></p>
+            <input type="hidden" name="total_price" value="{{ total_price }}">
+    
+            {% else %}
+                
+                <div class="product-info">
+    
+                    <div class="left">
+                        <img src="{{ url_for('static', filename=product.ProductImg[7:]) }}" 
+                        alt="{{ product.ProductName }}">
+                    </div>
+    
+                <div class="right">
+                    <p><strong>Product ID:</strong> {{ product_id }}</p>
+                    <p><strong>Color:</strong> {{ product_color }}</p>
+                    <p><strong>Size:</strong> {{ product_size }}</p>
+                    <p><strong>Quantity:</strong> {{ product_quantity }}</p>
+                    <p><strong>Total Price:</strong> ${{ total_price }}</p>
+                </div>
+                    
+                        <!-- Hidden fields for product details -->
+                    <input type="hidden" name="product_id" value="{{ product_id }}">
+                    <input type="hidden" name="product_quantity" value="{{ product_quantity }}">
+                    <input type="hidden" name="total_price" value="{{ total_price }}">
+                    <input type="hidden" name="product_color" value="{{ product_color }}">
+                    <input type="hidden" name="product_size" value="{{ product_size }}">
+                </div>
+            {% endif %}
+                
+                <h4>Select Address</h4>
+                <div class="custom-select">
+                    <select name="address_id" required>
+                        <option value="" disabled selected>Select your address</option>
+                        {% for address in addresses %}
+                        <option value="{{ address.AddressID }}">{{ address.FullAddress }} ({{ address.Recipient }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                    <!-- Hidden field for selected address -->
+                <input type="hidden" name="selected_address" id="selected_address">
+                
+                <h4>Payment Method</h4>
+                <div class="custom-payment-select">
+                    <select name="payment_method" required>
+                        <option value="" disabled selected>Select Payment Method</option>
+                        <option value="COD">Cash on Delivery</option>
+                        <option value="stripe">Stripe</option>
+                        <option value="gcash">Gcash</option>
+                    </select>
+                </div>
+                
+                    <!-- Hidden field for selected payment method -->
+                <input type="hidden" name="selected_payment_method" id="selected_payment_method">
+                
+                <button type="submit" onclick="updateHiddenFields()">Confirm Order</button>
+        </div>
+    </form>
+        
+    <script>
+                // JavaScript to update hidden inputs for address and payment method
+        function updateHiddenFields() {
+            const addressSelect = document.querySelector('select[name="address_id"]');
+            const paymentSelect = document.querySelector('select[name="payment_method"]');
+            
+                    // Set hidden input values
+            document.getElementById('selected_address').value = addressSelect.value;
+            document.getElementById('selected_payment_method').value = paymentSelect.value;
+    }
+    </script>
+</body>
+</html>

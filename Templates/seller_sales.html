@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Mrs+Saint+Delafield&family=Pattaya&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bowlby+One&family=Cherry+Bomb+One&family=Cookie&family=Ephesis&family=Lavishly+Yours&family=Modak&family=Mrs+Saint+Delafield&family=Pattaya&family=Poetsen+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
+
+    <title>Sales Report | Kunehouse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../static/seller_sales_style.css">
+
+</head>
+<body>
+    {% include 'seller_sidebar.html' %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-container">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <h1 class="custom">☁︎</h1>
+    <h1 class="custom-1">✦</h1>
+    <h1 class="custom-2">☁︎</h1>
+    <h1 class="custom-3">☁︎</h1>
+    <h1 class="custom-5">☁︎</h1>
+    <h1 class="custom-4">///</h1>
+    
+    <div class="top-sidebar">
+        <div class="left">
+            <h1>Sales Report</h1>
+        </div>
+        <div class="right">
+            <p>╰ ₊  ✧  ﾟ ⚬  𓂂  ➢</p>
+        </div>
+    </div>
+
+    <div class="banner">
+
+        {% if seller and seller.Banner %}
+            <img src="{{ url_for('static', filename='banners/' + seller.Banner) }}" alt="Seller Banner" class="banner-image">
+        {% else %}
+            <img src="{{ url_for('static', filename='banners/default_banner.jpg') }}" alt="Default Banner" class="banner-image">
+        {% endif %}
+
+    </div>
+    
+    <div class="main-content">
+        <h1 class="text-design">𖤣 . 𖥧 . 𖡼 . ⚘ . 𖤣 . 𖥧 . 𖡼 . ⚘ </h1>
+
+        <div class="chart-container">
+            <hr class="custom-hr">
+            <h2>Monthly Sales Revenue</h2>
+            <canvas id="monthlySalesChart" class="chart"></canvas>
+
+            <hr class="custom-hr">
+            <h2>Total Revenue Grouped by Month</h2>
+            <canvas id="groupedRevenueChart" class="chart"></canvas>
+        </div>
+    </div>
+
+    <div class="side-content">
+        <div class="totals-container">
+           <a href="{{ url_for('sales') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Revenue :</h3>
+                        <p>₱{{ total_revenue }}</p>
+                    </div>
+                </div>
+           </a>
+
+           <a href="{{ url_for('seller_products') }}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Best Product :</h3>
+                        <p>{{ best_selling_product.ProductName if best_selling_product else 'No sales yet' }}</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{{ url_for('orders')}}">
+                <div class="total-box">
+                    <div class="total-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                            <path d="M160-160v-516L82-846l72-34 94 202h464l94-202 72 34-78 170v516H160Zm240-280h160q17 0 28.5-11.5T600-480q0-17-11.5-28.5T560-520H400q-17 0-28.5 11.5T360-480q0 17 11.5 28.5T400-440ZM240-240h480v-358H240v358Zm0 0v-358 358Z"/>
+                        </svg>
+                    </div>
+                    <div class="total-info">
+                        <h4 class="total-text">⋅ ˚ . ⋆ ☾ ⁺ ₊  ‧</h4>
+                        <h3>Total Orders :</h3>
+                        <p>{{ total_orders }}</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+          const flashMessages = document.querySelectorAll('.flash-message');
+          flashMessages.forEach((message) => {
+            message.style.display = 'none';
+          });
+        }, 3000);
+        // Data passed from the server-side Flask view
+        const monthlySales = {{ monthly_sales | tojson }};
+        const totalRevenue = {{ total_revenue | tojson }};
+        const groupedRevenue = {{ monthly_revenue_grouped | tojson }};
+    
+        // Define the months from January to December
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    
+        // Initialize an empty array for the revenue data
+        const totalEarnings = new Array(12).fill(0); // Initialize with zeros for each month
+    
+        // Populate the totalEarnings array with actual data
+        monthlySales.forEach(sale => {
+            const monthIndex = parseInt(sale.month.split('-')[1]) - 1;  // Extract the month (1-12)
+            totalEarnings[monthIndex] = sale.total_earnings;  // Assign the earnings to the correct month
+        });
+    
+        // Monthly Sales Bar Chart
+        const ctx1 = document.getElementById('monthlySalesChart').getContext('2d');
+        const gradient1 = ctx1.createLinearGradient(0, 0, 0, 400);
+        gradient1.addColorStop(0, 'rgba(16, 57, 70, 0.7)');  // --base-clr
+        gradient1.addColorStop(1, 'rgba(208, 196, 161, 0.2)');  // --accent-clr
+    
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: months,  // Display months from Jan-Dec
+                datasets: [{
+                    label: 'Monthly Sales Revenue ($)',
+                    data: totalEarnings,
+                    backgroundColor: gradient1,
+                    borderColor: 'rgb(16, 57, 70)',  // --base-clr
+                    borderWidth: 2,
+                    hoverBackgroundColor: 'rgba(16, 57, 70, 0.9)',  // --base-clr
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                family: 'Arial',
+                                size: 14,
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month',
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                size: 16,
+                            }
+                        },
+                        ticks: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Revenue ($)',
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                size: 16,
+                            }
+                        },
+                        ticks: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                        },
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutBounce',
+                }
+            }
+        });
+    
+        // Parse data for the Revenue Grouped by Month Line Chart
+        const groupedTotals = new Array(12).fill(0); // Initialize with zeros for each month
+    
+        groupedRevenue.forEach(revenue => {
+            const monthIndex = parseInt(revenue.month.split('-')[1]) - 1;
+            groupedTotals[monthIndex] = revenue.total_revenue;
+        });
+    
+        const ctx2 = document.getElementById('groupedRevenueChart').getContext('2d');
+        const gradient2 = ctx2.createLinearGradient(0, 0, 0, 400);
+        gradient2.addColorStop(0, 'rgba(16, 57, 70, 0.7)');  // --base-clr
+        gradient2.addColorStop(1, 'rgba(208, 196, 161, 0.2)');  // --accent-clr
+    
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: months, // Display months from Jan-Dec
+                datasets: [{
+                    label: 'Revenue Grouped by Month ($)',
+                    data: groupedTotals,
+                    fill: true,
+                    backgroundColor: gradient2,
+                    borderColor: 'rgb(16, 57, 70)',  // --base-clr
+                    pointBackgroundColor: 'rgb(255, 255, 255)',  // --white-clr
+                    pointBorderColor: 'rgb(16, 57, 70)',  // --base-clr
+                    pointHoverBackgroundColor: 'rgb(16, 57, 70)',  // --base-clr
+                    pointHoverBorderColor: 'rgb(255, 255, 255)',  // --white-clr
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                family: 'Arial',
+                                size: 14,
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month',
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                size: 16,
+                            }
+                        },
+                        ticks: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Revenue ($)',
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                            font: {
+                                size: 16,
+                            }
+                        },
+                        ticks: {
+                            color: 'rgb(16, 57, 70)',  // --base-clr
+                        },
+                        beginAtZero: true
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart',
+                }
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>
